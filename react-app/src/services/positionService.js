@@ -1,14 +1,14 @@
 import client from "./apiClient";
 
 function extractData(res) {
-  return res.data;
+  return res.data["positions"];
 }
 
-export function getUsers(params) {
+export function getPositions(params) {
   return client
-    .get("/users", { params })
+    .get("/positions", { params })
     .then(extractData)
     .catch(error => console.log(error));
 }
 
-export default { getUsers };
+export default { getPositions };

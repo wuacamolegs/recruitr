@@ -1,19 +1,19 @@
 import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { fetchUsers } from "../reducers/userReducer";
+import { fetchPositions } from "../reducers/positionReducer";
 
 export class App extends React.Component {
   componentDidMount() {
     const { dispatch } = this.props;
-    dispatch(fetchUsers({}));
+    dispatch(fetchPositions({}));
   }
   render() {
-    const { users } = this.props;
-    const user = users[0];
+    const { positions } = this.props;
+    const position = positions[0];
     return (
       <div>
-        <h1>Hello {(user && user.name) || "World"}!</h1>
+        <h1>Hello {(position && position.title) || "World"}!</h1>
       </div>
     );
   }
@@ -24,14 +24,14 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 });
 
 const mapStateToProps = state => {
-  const { users } = state;
+  const { positions } = state;
   return {
-    users: Object.values(users)
+    positions: Object.values(positions)
   };
 };
 
 App.propTypes = {
-  users: PropTypes.arrayOf(PropTypes.object)
+  positions: PropTypes.arrayOf(PropTypes.object)
 };
 
 const AppContainer = connect(
