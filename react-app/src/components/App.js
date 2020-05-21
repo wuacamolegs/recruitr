@@ -34,9 +34,7 @@ App.propTypes = {
   positions: PropTypes.arrayOf(PropTypes.object)
 };
 
-const AppContainer = connect(
+export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(App);
-
-export default AppContainer;
