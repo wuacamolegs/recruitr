@@ -1,14 +1,18 @@
 import React from "react";
-import { Route, Redirect } from "react-router-dom";
-export const PrivateRoute = ({ component: Component, ...rest }) => (
-  <Route
-    {...rest}
-    render={props =>
-      localStorage.getItem("auth") ? (
-        <Component {...props} />
-      ) : (
-        <Redirect to={{ pathname: "/", state: { from: props.location } }} />
-      )
-    }
-  />
-);
+import { Route } from "react-router-dom";
+import Layout from "./components/layout/Layout";
+
+export default function PrivateRoute({ component: Component, ...rest }) {
+  return (
+    <Route
+      {...rest}
+      render={props => {
+        return (
+          <Layout>
+            <Component {...props} />
+          </Layout>
+        );
+      }}
+    />
+  );
+}

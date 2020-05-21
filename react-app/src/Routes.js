@@ -1,11 +1,14 @@
 import React from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
-import App from "./components/App";
+import { Provider as AuthenticationProvider } from "./AuthenticationContext";
+import PrivateRoute from "./PrivateRoute";
+import Positions from "./components/Positions";
 
 const routes = (
-  <Switch>
-    <Route component={App} exact path="/welcome" />
-    <Redirect exact from="/" to="/welcome" />
-  </Switch>
+  <AuthenticationProvider>
+    <Switch>
+      <PrivateRoute component={Positions} exact path="/" />
+    </Switch>
+  </AuthenticationProvider>
 );
 export default routes;

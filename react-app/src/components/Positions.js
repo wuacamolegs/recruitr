@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { fetchPositions } from "../reducers/positionReducer";
 
-export class App extends React.Component {
+export class Positions extends React.Component {
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch(fetchPositions({}));
@@ -30,11 +30,11 @@ const mapStateToProps = state => {
   };
 };
 
-App.propTypes = {
+Positions.propTypes = {
   positions: PropTypes.arrayOf(PropTypes.object)
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(App);
+)(Positions);

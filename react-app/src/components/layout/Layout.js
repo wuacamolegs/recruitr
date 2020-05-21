@@ -1,9 +1,15 @@
 import PropTypes from "prop-types";
 import React from "react";
 import connect from "react-redux/es/connect/connect";
+import NavBar from "./NavBar";
 
 function Layout({ children }) {
-  return <React.Fragment>{children}</React.Fragment>;
+  return (
+    <React.Fragment>
+      <NavBar />
+      {children}
+    </React.Fragment>
+  );
 }
 
 Layout.propTypes = {
