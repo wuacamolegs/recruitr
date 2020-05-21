@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-//import { fetchAppliations } from "../reducers/applicationReducer";
+import { fetchApplications, fetchPosition } from "../reducers/positionReducer";
 
 const ApplicationRow = ({ application }) => {
   return (
@@ -17,10 +17,11 @@ ApplicationRow.propTypes = {
 };
 
 export class Applications extends React.Component {
-  // componentDidMount() {
-  //   const { dispatch, match } = this.props;
-  //   dispatch(fetchAppliations(Number(match.params.position_id)));
-  // }
+  componentDidMount() {
+    const { dispatch, match } = this.props;
+    dispatch(fetchPosition(Number(match.params.position_id)));
+    dispatch(fetchApplications(Number(match.params.position_id)));
+  }
 
   render() {
     const { currentPosition, applications } = this.props;

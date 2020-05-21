@@ -57,9 +57,10 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 });
 
 const mapStateToProps = state => {
-  const { positions } = state;
+  const { positions } = state.positions;
+
   return {
-    positions: Object.values(positions)
+    positions: positions
   };
 };
 
