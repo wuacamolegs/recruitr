@@ -1,7 +1,32 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { fetchPositions } from "../reducers/positionReducer";
+import { Table } from "react-bootstrap";
+import Skills from "./commons/Skills";
+
+const PositionRow = ({ position }) => {
+  return (
+    <tr>
+      <td>
+        <Link to={`/positions/${position.id}`}>{position.title}</Link>
+      </td>
+      <td>
+        <Skills skills={position.skills} />
+      </td>
+      <td>
+        <Link to={`/positions/${position.id}/applications`}>
+          {position.applications} applications
+        </Link>
+      </td>
+    </tr>
+  );
+};
+
+PositionRow.propTypes = {
+  position: PropTypes.object
+};
 
 export class Positions extends React.Component {
   componentDidMount() {
@@ -13,7 +38,15 @@ export class Positions extends React.Component {
     const position = positions[0];
     return (
       <div>
-        <h1>Hello {(position && position.title) || "World"}!</h1>
+        <h3>All Positions</h3>
+        <Table hover>
+          <tbody>
+            {positions &&
+              positions.map((position, i) => {
+                return <PositionRow key={i} position={position} />;
+              })}
+          </tbody>
+        </Table>
       </div>
     );
   }
