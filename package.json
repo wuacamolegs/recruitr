@@ -1,0 +1,13 @@
+{
+  "name": "recruitr",
+  "engines": {
+    "node": "v10.15.3",
+    "npm": "6.11.3"
+  },
+  "scripts": {
+    "build": "cd react-app && npm install && npm run build && set PORT=5000 && cd ..",
+    "deploy": "cp -a react-app/build/. public/",
+    "postinstall": "npm run build && npm run deploy && echo 'Client built!'",
+    "heroku-post-build": "npm build && npm deploy"
+  }
+}
