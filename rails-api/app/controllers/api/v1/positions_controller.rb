@@ -6,7 +6,19 @@ module Api
         render json: { positions: positions }
       end
 
+      def show
+        render json: position
+      end
+
+      def applications
+        render json: []
+      end
+
       private
+
+      def position
+        Position.find(params[:id])
+      end
 
       def filter_positions
         PositionsQuery.new
