@@ -1,0 +1,22 @@
+{
+  "name": "recruitr",
+  "version": "1.0.0",
+  "description": "By [Camila García Santillán](mailto:camilagsantillan@gmail.com)",
+  "main": "index.js",
+  "engines": {
+    "node": "v10.15.3",
+    "npm": "6.11.3"
+  },
+  "scripts": {
+    "build": "cd react-app && npm install && npm run build && set PORT=5000 && cd ..",
+    "deploy": "cp -a react-app/build/. public/",
+    "postinstall": "npm run build && npm run deploy && echo 'Client built!'",
+    "heroku-post-build": "npm build && npm deploy"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com-wuacamolegs:wuacamolegs/recruitr.git"
+  },
+  "author": "",
+  "license": "ISC"
+}
