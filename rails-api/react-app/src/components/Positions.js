@@ -35,7 +35,7 @@ export class Positions extends React.Component {
   }
   render() {
     const { positions } = this.props;
-    const position = positions[0];
+
     return (
       <div>
         <h3>All Positions</h3>
