@@ -7,7 +7,7 @@ import { fetchApplications, fetchPosition } from "../reducers/positionReducer";
 const ApplicationRow = ({ application }) => {
   return (
     <Link to={`/application/${application.id}`}>
-      <h3>{application.applicant.name}</h3>
+      <p>{application.title}</p>
     </Link>
   );
 };
@@ -24,18 +24,21 @@ export class Applications extends React.Component {
   }
 
   render() {
-    const { currentPosition, applications } = this.props;
+    const { currentPosition } = this.props;
 
     if (!currentPosition) {
       return null;
     }
+    const applications = currentPosition.applications;
     return (
       <div>
-        <h1>Appliations for {currentPosition.title}</h1>
+        <h1>
+          Appliations for <strong>{currentPosition.title}</strong>
+        </h1>
 
         {applications &&
           applications.map((application, i) => {
-            return <ApplicationRow key={i} />;
+            return <ApplicationRow key={i} application={application} />;
           })}
       </div>
     );
@@ -47,11 +50,9 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 });
 
 const mapStateToProps = state => {
-  const { currentPosition } = state;
-  const applications = [];
+  const { currentPosition } = state.positions;
   return {
-    currentPosition: currentPosition,
-    applications: Object.values(applications)
+    currentPosition: currentPosition
   };
 };
 

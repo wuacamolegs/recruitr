@@ -35,7 +35,13 @@ export const positionReducer = (state = INITIAL_STATE, action) => {
     case "SET_POSITIONS":
       return { ...state, positions: action.positions, currentPosition: {} };
     case "SET_CURRENT_POSITION":
-      return { ...state, currentPosition: action.position };
+      return {
+        ...state,
+        currentPosition: {
+          ...state.currentPosition,
+          ...action.position
+        }
+      };
     case "SET_APPLICATIONS":
       return {
         ...state,
