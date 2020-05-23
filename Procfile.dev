@@ -1,2 +1,0 @@
-web-api: cd rails-api && PORT=3000 && bundle exec rails s
-client: cd react-app && npm start
