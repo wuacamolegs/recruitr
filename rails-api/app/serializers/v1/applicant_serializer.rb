@@ -1,9 +1,7 @@
-module V1
-  class ApplicantSerializer < ActiveModel::Serializer
-    attributes :id, :full_name, :email
+class ApplicantSerializer < ActiveModel::Serializer
+  attributes :id, :full_name, :email
 
-    def full_name
-      object.full_name
-    end
+  def full_name
+    object.full_name
   end
-end
+  end

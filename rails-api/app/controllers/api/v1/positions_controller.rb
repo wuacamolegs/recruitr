@@ -11,7 +11,7 @@ module Api
       end
 
       def applications
-        render json: []
+        render json: { applications: position.job_applications }
       end
 
       private
@@ -32,7 +32,7 @@ module Api
 
       # TODO: add pagination
       def serialize_positions(positions)
-        serialized_positions = positions.map { |p| ::V1::PositionSerializer.new(p).as_json }
+        serialized_positions = positions.map { |p| PositionSerializer.new(p).as_json }
         { positions: serialized_positions }
       end
     end

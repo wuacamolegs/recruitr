@@ -2,7 +2,7 @@ module Api
   module V1
     class JobApplicationsController < ApiController
       def show
-        render json: ::V1::JobApplicationSerializer.new(job_application).as_json
+        render json: job_application
       end
 
       private
