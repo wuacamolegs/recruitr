@@ -1,6 +1,5 @@
 class Position < ApplicationRecord
-  scope :open,   -> { where(state: states[:open]) }
-  scope :closed, -> { where(state: states[:closed]) }
+  has_many :job_applications
 
   validates :title, :description, :state, presence: true
 
