@@ -6,6 +6,6 @@ class PositionSerializer < ActiveModel::Serializer
   end
 
   def skills
-    object.skills.map{|s| s['skill'] }
+    object.skills.map { |s| s['skill'] }
   end
 end
