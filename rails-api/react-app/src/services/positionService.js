@@ -19,11 +19,4 @@ export function getPosition(positionId) {
     .catch(error => console.log(error));
 }
 
-export function getApplications(positionId) {
-  return client
-    .get(`/positions/${positionId}/applications`)
-    .then(extractData)
-    .catch(error => console.log(error));
-}
-
 export default { getPositions };

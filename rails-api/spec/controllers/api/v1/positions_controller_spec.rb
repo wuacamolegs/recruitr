@@ -102,4 +102,61 @@ describe Api::V1::PositionsController do
       end
     end
   end
+
+  describe 'GET #show' do
+    context 'when position does not exist' do
+      let(:params) { { id: 'FAKE ' } }
+
+      before do
+        get :show, params: params
+      end
+
+      it 'returns a not found status code' do
+        expect(response).to have_http_status(:not_found)
+      end
+    end
+
+    context 'when the position exists' do
+      let(:position) { create(:position) }
+      let(:params)   { { id: position.id } }
+
+      before do
+        get :show, params: params
+      end
+
+      it 'returns ok status' do
+        expect(response).to have_http_status(:ok)
+      end
+
+      it 'returns the position' do
+        expect(response_body['id']).to           eq(position.id)
+        expect(response_body['title']).to        eq(position.title)
+        expect(response_body['description']).to  eq(position.description)
+        expect(response_body['skills']).to       eq(position.skills)
+        expect(response_body['applications']).to eq(0)
+      end
+    end
+
+    context 'when having applications' do
+      let(:position) { create(:position) }
+      let(:params)   { { id: position.id } }
+      let(:count)    { rand(1..4) }
+
+      before do
+        create_list(:job_application, count, position_id: position.id)
+        get :show, params: params
+      end
+
+      it 'returns the position' do
+        expect(response_body['id']).to          eq(position.id)
+        expect(response_body['title']).to       eq(position.title)
+        expect(response_body['description']).to eq(position.description)
+        expect(response_body['skills']).to      eq(position.skills)
+      end
+
+      it 'returns number of applications correctly' do
+        expect(response_body['applications']).to eq(count)
+      end
+    end
+  end
 end

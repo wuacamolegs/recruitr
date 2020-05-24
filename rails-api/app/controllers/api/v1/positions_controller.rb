@@ -3,7 +3,7 @@ module Api
     class PositionsController < ApiController
       def index
         positions = filter_positions
-        render json: { positions: positions }
+        render json: serialize_positions(positions)
       end
 
       def show
@@ -11,7 +11,7 @@ module Api
       end
 
       def applications
-        render json: []
+        render json: { applications: serialize_job_applications(position.job_applications) }
       end
 
       private
@@ -28,6 +28,16 @@ module Api
                       .order(params[:order])
                       .limit(10)
                       .call
+      end
+
+      def serialize_job_applications(_job_applications)
+        position.job_applications.map { |j| JobApplicationSerializer.new(j).as_json }
+      end
+
+      # TODO: add pagination
+      def serialize_positions(positions)
+        serialized_positions = positions.map { |p| PositionSerializer.new(p).as_json }
+        { positions: serialized_positions }
       end
     end
   end
