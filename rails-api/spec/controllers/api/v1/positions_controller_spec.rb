@@ -198,7 +198,7 @@ describe Api::V1::PositionsController do
         post :create, params: { position: params }
       end
 
-      it 'returns ok status' do
+      it 'returns created status' do
         expect(response).to have_http_status(:created)
       end
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_24_085645) do
+ActiveRecord::Schema.define(version: 2020_05_24_140958) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 2020_05_24_085645) do
     t.string "angelist"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.jsonb "skills"
     t.index ["email"], name: "index_applicants_on_email", unique: true
   end
 
@@ -39,8 +40,10 @@ ActiveRecord::Schema.define(version: 2020_05_24_085645) do
     t.jsonb "score_cards"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "recruiter_id"
     t.index ["applicant_id"], name: "index_job_applications_on_applicant_id"
     t.index ["position_id"], name: "index_job_applications_on_position_id"
+    t.index ["recruiter_id"], name: "index_job_applications_on_recruiter_id"
     t.index ["state"], name: "index_job_applications_on_state"
   end
 
@@ -67,5 +70,6 @@ ActiveRecord::Schema.define(version: 2020_05_24_085645) do
     t.index ["email"], name: "index_recruiters_on_email", unique: true
   end
 
+  add_foreign_key "job_applications", "recruiters"
   add_foreign_key "positions", "hiring_teams"
 end
