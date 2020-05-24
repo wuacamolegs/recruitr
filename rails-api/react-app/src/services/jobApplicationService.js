@@ -1,5 +1,10 @@
 import client from "./apiClient";
-import { extractData, objectKeysToCamelCase } from "../helpers/helpers";
+import {
+  extractData,
+  objectKeysToCamelCase,
+  objectKeysToUnderscore,
+  buildSkills
+} from "../helpers/helpers";
 
 export function getJobApplication(applicationId) {
   return client
@@ -16,6 +21,21 @@ export function getJobApplications(positionId) {
     .then(data => data["applications"])
     .then(objectKeysToCamelCase)
     .catch(error => console.log(error));
+}
+
+export function newJobApplication(params, positionId) {
+  return client
+    .post("/job_applications", {
+      job_application: {
+        applicant: {
+          ...objectKeysToUnderscore(params),
+          skills: buildSkills(params.skills)
+        },
+        position_id: positionId
+      }
+    })
+    .then(extractData)
+    .then(objectKeysToCamelCase);
 }
 
 export default { getJobApplication, getJobApplications };

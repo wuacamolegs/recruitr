@@ -32,7 +32,8 @@ export class JobApplication extends React.Component {
       <React.Fragment>
         <p>
           Applied for{" "}
-          <Link onClick={this.viewPosition.bind(this)}>{position.title}</Link>
+          <Link onClick={this.viewPosition.bind(this)}>{position.title}</Link>{" "}
+          {jobApplication.createdAt}
         </p>
         <h3>
           {applicant.fullName}

@@ -1,5 +1,5 @@
 class JobApplicationSerializer < ActiveModel::Serializer
-  attributes :id, :score_cards, :applicant, :position, :state
+  attributes :id, :score_cards, :applicant, :position, :state, :created_at
 
   has_one :applicant, serializer: ApplicantSerializer
 
