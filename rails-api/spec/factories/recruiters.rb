@@ -3,6 +3,7 @@ FactoryBot.define do
     first_name  { Faker::Name.first_name }
     last_name   { Faker::Name.last_name }
     email       { Faker::Internet.email }
+    skills      { build_list(:skill, Random.rand(1..3)) }
     hiring_team { build(:hiring_team) }
   end
 end
