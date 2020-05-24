@@ -2,10 +2,15 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import { fetchJobApplication } from "../reducers/jobApplicationReducer";
+import {
+  fetchJobApplication,
+  matchRecruiter
+} from "../reducers/jobApplicationReducer";
+import { fetchRecruiters } from "../reducers/hiringTeamReducer";
 import ScoreCards from "./commons/ScoreCards";
+import MatchRecruiter from "./MatchRecruiter";
 import Skills from "./commons/Skills";
-import { Badge } from "react-bootstrap";
+import { Badge, Jumbotron } from "react-bootstrap";
 
 export class JobApplication extends React.Component {
   componentDidMount() {
@@ -20,12 +25,16 @@ export class JobApplication extends React.Component {
   }
 
   render() {
-    const { jobApplication } = this.props;
+    const {
+      jobApplication,
+      recruiters,
+      onChangeCriteria,
+      onSubmitRecruiter
+    } = this.props;
 
     if (!jobApplication) {
       return null;
     }
-
     const { applicant, position } = jobApplication;
 
     return (
@@ -39,11 +48,30 @@ export class JobApplication extends React.Component {
           {applicant.fullName}
           <Badge variant="light">{jobApplication.state}</Badge>
         </h3>
-        <Skills skills={applicant.skills} />
+        {jobApplication.state == "unmatched" && (
+          <MatchRecruiter
+            applicant={applicant}
+            position={position}
+            recruiters={recruiters}
+            onChange={criteria =>
+              onChangeCriteria(position.hiringTeamId, criteria)
+            }
+            onSubmit={recruiterId =>
+              onSubmitRecruiter(jobApplication.id, recruiterId)
+            }
+          />
+        )}
         {jobApplication.state !== "unmatched" && (
           <React.Fragment>
-            <h4>Interview Process</h4>
-            <ScoreCards scores={jobApplication.scoreCards} />
+            <Jumbotron>
+              <h4>Skills</h4>
+              <Skills skills={applicant.skills} />
+            </Jumbotron>
+            <Jumbotron>
+              <h4>Interview Process</h4>
+              <p>Recruiter: {jobApplication.recruiter.fullName}</p>
+              <ScoreCards scores={jobApplication.scoreCards} />
+            </Jumbotron>
           </React.Fragment>
         )}
       </React.Fragment>
@@ -52,13 +80,21 @@ export class JobApplication extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  dispatch
+  dispatch,
+  onChangeCriteria: (hiringTeamId, criteria) => {
+    dispatch(fetchRecruiters(hiringTeamId, { criteria: criteria }));
+  },
+  onSubmitRecruiter: (jobApplicationId, recruiterId) => {
+    dispatch(matchRecruiter(jobApplicationId, recruiterId));
+  }
 });
 
 const mapStateToProps = state => {
   const { currentJobApplication } = state.jobApplications;
+  const { recruiters } = state.hiringTeams;
   return {
-    jobApplication: currentJobApplication
+    jobApplication: currentJobApplication,
+    recruiters: recruiters
   };
 };
 

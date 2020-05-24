@@ -35,7 +35,18 @@ export function newJobApplication(params, positionId) {
       }
     })
     .then(extractData)
-    .then(objectKeysToCamelCase);
+    .then(objectKeysToCamelCase)
+    .catch(error => console.log(error));
 }
 
-export default { getJobApplication, getJobApplications };
+export function setRecruiter(jobApplicationId, recruiterId) {
+  return client
+    .put(`/job_applications/${jobApplicationId}`, {
+      recruiter_id: recruiterId
+    })
+    .then(extractData)
+    .then(objectKeysToCamelCase)
+    .catch(error => console.log(error));
+}
+
+export default { getJobApplication, getJobApplications, setRecruiter };

@@ -10,9 +10,9 @@ export function fetchHiringTeams(params) {
   };
 }
 
-export function fetchRecruiters(hiringTeamId) {
+export function fetchRecruiters(hiringTeamId, params) {
   return dispatch => {
-    return getRecruiters(hiringTeamId).then(recruiters => {
+    return getRecruiters(hiringTeamId, params).then(recruiters => {
       return dispatch({ type: "SET_RECRUITERS", recruiters });
     });
   };

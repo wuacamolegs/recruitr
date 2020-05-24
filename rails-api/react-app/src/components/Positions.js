@@ -16,7 +16,7 @@ const PositionRow = ({ position }) => {
         <Skills skills={position.skills} />
       </td>
       <td>
-        <Link to={`/positions/${position.id}/job_applications`}>
+        <Link to={`/positions/${position.id}`}>
           {position.applications} applications
         </Link>
       </td>
