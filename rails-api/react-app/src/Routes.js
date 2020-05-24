@@ -1,9 +1,10 @@
 import React from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Switch } from "react-router-dom";
 import { Provider as AuthenticationProvider } from "./AuthenticationContext";
 import PrivateRoute from "./PrivateRoute";
 import Positions from "./components/Positions";
-import Applications from "./components/Applications";
+import JobApplications from "./components/JobApplications";
+import JobApplication from "./components/JobApplication";
 
 const routes = (
   <AuthenticationProvider>
@@ -15,9 +16,14 @@ const routes = (
         path="/positions/:position_id"
       />
       <PrivateRoute
-        component={Applications}
+        component={JobApplications}
         exact
-        path="/positions/:position_id/applications"
+        path="/positions/:position_id/job_applications"
+      />
+      <PrivateRoute
+        component={JobApplication}
+        exact
+        path="/job_applications/:job_application_id"
       />
     </Switch>
   </AuthenticationProvider>

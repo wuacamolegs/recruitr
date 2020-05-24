@@ -16,7 +16,7 @@ const PositionRow = ({ position }) => {
         <Skills skills={position.skills} />
       </td>
       <td>
-        <Link to={`/positions/${position.id}/applications`}>
+        <Link to={`/positions/${position.id}/job_applications`}>
           {position.applications} applications
         </Link>
       </td>
@@ -37,7 +37,7 @@ export class Positions extends React.Component {
     const { positions } = this.props;
 
     return (
-      <div>
+      <React.Fragment>
         <h3>All Positions</h3>
         <Table hover>
           <tbody>
@@ -47,7 +47,7 @@ export class Positions extends React.Component {
               })}
           </tbody>
         </Table>
-      </div>
+      </React.Fragment>
     );
   }
 }
