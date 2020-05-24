@@ -44,4 +44,65 @@ describe Api::V1::JobApplicationsController do
       end
     end
   end
+
+  describe 'GET #create' do
+    let(:expected_applicant) { build(:applicant) }
+    let(:applicant) do
+      {
+        'first_name' => expected_applicant.first_name,
+        'last_name' => expected_applicant.last_name,
+        'email' => expected_applicant.email,
+        'skills' => expected_applicant.skills
+      }
+    end
+
+    let(:params) do
+      {
+        applicant: applicant,
+        position_id: position_id
+      }
+    end
+
+    context 'when position doesnt exists' do
+      let(:position_id) { 'fake' }
+
+      before do
+        allow(JobApplicationBuilder).to receive(:build!).and_raise(ActiveRecord::RecordNotFound)
+        post :create, params: { job_application: params }
+      end
+
+      it 'returns a not found status code' do
+        expect(response).to have_http_status(:not_found)
+      end
+    end
+
+    context 'when the position exists' do
+      let(:position) { create(:position, :with_hiring_team) }
+      let(:position_id) { position.id }
+
+      before do
+        post :create, params: { job_application: params }
+      end
+
+      it 'returns created status' do
+        expect(response).to have_http_status(:created)
+      end
+
+      it 'returns job application correctly' do
+        expect(response_body['state']).to eq('unmatched')
+      end
+
+      it 'returns applicant attrs correctly' do
+        applicant = response_body['applicant']
+        expect(applicant['full_name']).to eq(expected_applicant.full_name)
+        expect(applicant['email']).to eq(expected_applicant.email)
+        expect(applicant['skills']).to eq(expected_applicant.skills)
+      end
+
+      it 'returns position attrs correctly' do
+        expect(response_body['position']['id']).to eq(position.id)
+        expect(response_body['position']['title']).to eq(position.title)
+      end
+    end
+  end
 end

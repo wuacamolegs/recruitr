@@ -5,10 +5,24 @@ module Api
         render json: job_application
       end
 
+      def create
+        application = JobApplicationBuilder.build!(job_application_params)
+        application.save!
+        render json: application, status: :created
+      end
+
       private
 
       def job_application
         JobApplication.find(params[:id])
+      end
+
+      def job_application_params
+        params.require(:job_application).permit(:position_id, applicant: applicant_params)
+      end
+
+      def applicant_params
+        [:first_name, :last_name, :email, :linkedin, :angelist, skills: %i[skill seniority]]
       end
     end
   end

@@ -40,8 +40,8 @@ module Api
                       .call
       end
 
-      def serialize_job_applications(_job_applications)
-        position.job_applications.map { |j| JobApplicationSerializer.new(j).as_json }
+      def serialize_job_applications(job_applications)
+        job_applications.map { |j| JobApplicationSerializer.new(j).as_json }
       end
 
       # TODO: add pagination

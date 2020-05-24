@@ -9,10 +9,6 @@ FactoryBot.define do
       hiring_team { build(:hiring_team, :with_recruiters, number: 1) }
     end
 
-    trait :with_hiring_team do
-      hiring_team { build(:hiring_team, :with_recruiters, number: 1) }
-    end
-
     trait :with_skills do
       transient do
         array_skills { [] }
