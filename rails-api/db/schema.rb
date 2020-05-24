@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 2020_05_23_093114) do
     t.bigint "position_id", null: false
     t.bigint "applicant_id", null: false
     t.integer "state", default: 0, null: false
-    t.jsonb "score_card"
+    t.jsonb "score_cards"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["applicant_id"], name: "index_job_applications_on_applicant_id"

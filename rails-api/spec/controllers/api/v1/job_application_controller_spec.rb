@@ -14,7 +14,7 @@ describe Api::V1::JobApplicationsController do
       end
     end
 
-    context 'when the profile exists' do
+    context 'when the job application exists' do
       let(:job_application) { create(:job_application) }
       let(:applicant)       { job_application.applicant }
       let(:position)        { job_application.position }

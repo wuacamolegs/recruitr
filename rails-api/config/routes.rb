@@ -6,7 +6,7 @@ Rails.application.routes.draw do
           get :applications
         end
       end
-      
+      resources :applicants, only: [:show]
       resources :job_applications, only: [:show]
     end
   end
