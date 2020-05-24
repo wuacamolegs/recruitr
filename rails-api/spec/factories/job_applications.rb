@@ -10,13 +10,13 @@ FactoryBot.define do
       end
 
       after(:build) do |job_application, evaluator|
-        job_application.state =    'matched'
+        job_application.state = 'matched'
         job_application.recruiter = evaluator.recruiter
       end
     end
 
     trait :interviewing do
-      after(:build) do |job_application, evaluator|
+      after(:build) do |job_application, _evaluator|
         job_application.state =       'interviewing'
         job_application.score_notes = build_list(:score_notes, Random.rand(0..3))
         job_application.recruiter =   build(:recruiter)
@@ -24,7 +24,7 @@ FactoryBot.define do
     end
 
     trait :closed do
-      after(:build) do |job_application, evaluator|
+      after(:build) do |job_application, _evaluator|
         job_application.state =       'closed'
         job_application.score_notes = build_list(:score_notes, Random.rand(0..3))
         job_application.recruiter =   build(:recruiter)

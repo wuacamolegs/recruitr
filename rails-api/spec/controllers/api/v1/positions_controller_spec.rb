@@ -54,7 +54,7 @@ describe Api::V1::PositionsController do
       let(:skill)  { Faker::Lorem.word }
       let(:skill2) { Faker::Lorem.word }
       let(:skill3) { Faker::Lorem.word }
-      let(:hiring_team) { create(:hiring_team)  }
+      let(:hiring_team) { create(:hiring_team) }
 
       before do
         create(:position, :with_skills, array_skills: [skill, skill2, skill3], hiring_team: hiring_team)
@@ -75,7 +75,7 @@ describe Api::V1::PositionsController do
       let(:skill)  { Faker::Lorem.word }
       let(:skill2) { Faker::Lorem.word }
       let(:skill3) { Faker::Lorem.word }
-      let(:hiring_team) { create(:hiring_team)  }
+      let(:hiring_team) { create(:hiring_team) }
 
       before do
         create(:position, :with_skills, array_skills: [skill, skill2, skill3], hiring_team: hiring_team)

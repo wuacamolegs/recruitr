@@ -3,7 +3,7 @@ FactoryBot.define do
     skill     { Faker::Job.key_skills }
     seniority { Faker::Number.between(1, 10) }
 
-    initialize_with  { new(attributes) }
+    initialize_with { new(attributes) }
     skip_create
   end
 end

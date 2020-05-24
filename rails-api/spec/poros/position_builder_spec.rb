@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe PositionBuilder do
-  let(:position_builder)  { described_class}
+  let(:position_builder)  { described_class }
   let(:build_postion)     { position_builder.build!(params) }
   let(:expected_position) { build(:position) }
   let(:hiring_team)       { create(:hiring_team, :with_recruiters, number: 1) }
@@ -31,7 +31,7 @@ describe PositionBuilder do
       end
 
       it 'raise an error' do
-        expect{ build_postion }.to raise_error
+        expect { build_postion }.to raise_error
       end
     end
 
@@ -41,7 +41,7 @@ describe PositionBuilder do
       end
 
       it 'raise an error' do
-        expect{ build_postion }.to raise_error(ActiveRecord::RecordNotFound)
+        expect { build_postion }.to raise_error(ActiveRecord::RecordNotFound)
       end
     end
   end

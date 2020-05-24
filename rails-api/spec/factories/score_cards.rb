@@ -5,6 +5,6 @@ FactoryBot.define do
     interest_in_company { Faker::Number.between(0, 10) }
     interview_notes     { Faker::Lorem.sentence }
 
-    initialize_with  { new(attributes) }
+    initialize_with { new(attributes) }
   end
 end

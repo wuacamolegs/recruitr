@@ -15,10 +15,14 @@ describe Api::V1::JobApplicationsController do
     end
 
     context 'when the job application exists' do
-      let(:job_application) { create(:job_application) }
-      let(:applicant)       { job_application.applicant }
-      let(:position)        { job_application.position }
-      let(:params)          { { id: job_application.id } }
+      let(:position)        { create(:position, :with_hiring_team) }
+      let(:applicant)       { create(:applicant) }
+      let(:job_application) do
+        create(:job_application,
+               position: position,
+               applicant: applicant)
+      end
+      let(:params) { { id: job_application.id } }
 
       it 'returns ok status' do
         expect(response).to have_http_status(:ok)

@@ -1,6 +1,6 @@
 class JobApplication < ApplicationRecord
-  belongs_to :applicant, class_name: 'Applicant'
-  belongs_to :position, class_name: 'Position'
+  belongs_to :applicant, class_name: 'Applicant', foreign_key: 'applicant_id'
+  belongs_to :position, class_name: 'Position', foreign_key: 'position_id'
 
   validates :applicant, :position, presence: true
 

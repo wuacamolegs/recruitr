@@ -28,8 +28,8 @@ class PositionBuilder
     raise 'undefined skills' if params[SKILLS].blank?
 
     position.skills = params[SKILLS].map do |skill|
-     Skill.new(skill: skill['skill'], seniority: skill['seniority']&.to_i)
-   end
+      Skill.new(skill: skill['skill'], seniority: skill['seniority']&.to_i)
+    end
   end
 
   def set_hiring_team

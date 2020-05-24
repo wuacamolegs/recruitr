@@ -23,7 +23,7 @@ module Api
       private
 
       def position_params
-        params.require(:position).permit(:title, :description, :hiring_team_id, skills: [:skill, :seniority])
+        params.require(:position).permit(:title, :description, :hiring_team_id, skills: %i[skill seniority])
       end
 
       def position

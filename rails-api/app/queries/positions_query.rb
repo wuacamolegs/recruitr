@@ -18,8 +18,8 @@ class PositionsQuery
   def with_skills(skills)
     return self unless skills.present?
 
-    skills_hash = skills.map{|skill| {skill: skill}}.to_json
-    @positions = positions.where("skills @> ?", skills_hash) if skills.present?
+    skills_hash = skills.map { |skill| { skill: skill } }.to_json
+    @positions = positions.where('skills @> ?', skills_hash) if skills.present?
     self
   end
 
