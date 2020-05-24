@@ -10,9 +10,9 @@ export class CreatePosition extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: "Dev",
-      description: "Description",
-      skills: "Ruby, Rails, AWS"
+      title: "",
+      description: "",
+      skills: ""
     };
 
     this.handleChange = this.handleChange.bind(this);

@@ -2,7 +2,8 @@ import client from "./apiClient";
 import {
   extractData,
   objectKeysToCamelCase,
-  objectKeysToUnderscore
+  objectKeysToUnderscore,
+  buildSkills
 } from "../helpers/helpers";
 
 export function getPositions(params) {
@@ -30,16 +31,8 @@ export function newPosition(params) {
         skills: buildSkills(params.skills)
       }
     })
-    .then(extractData);
+    .then(extractData)
+    .then(objectKeysToCamelCase);
 }
-
-const buildSkills = skills_str => {
-  return skills_str.split(",").map(skill => {
-    return {
-      skill: skill,
-      seniority: 10
-    };
-  });
-};
 
 export default { getPositions, getPosition };
