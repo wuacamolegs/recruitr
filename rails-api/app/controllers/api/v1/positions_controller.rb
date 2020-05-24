@@ -14,7 +14,17 @@ module Api
         render json: { applications: serialize_job_applications(position.job_applications) }
       end
 
+      def create
+        position = PositionBuilder.build!(position_params)
+        position.save!
+        render json: position, status: :created
+      end
+
       private
+
+      def position_params
+        params.require(:position).permit(:title, :description, :hiring_team_id, skills: %i[skill seniority])
+      end
 
       def position
         Position.find(params[:id])

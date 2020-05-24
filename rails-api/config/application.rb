@@ -23,6 +23,7 @@ module RailsApi
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
+    config.log_level = :debug
 
     config.autoload_paths += Dir[Rails.root.join('app', 'serializers', '**/**')]
     # Settings in config/environments/* take precedence over those specified here.

@@ -20,6 +20,11 @@ gem 'rack-cors'
 
 gem 'oj', '~> 3.6.7'
 
+# Simple value objects
+gem 'dry-struct', '~> 1.0.0'
+gem 'dry-types', '~> 1.0'
+gem 'dry-validation', '~> 1.0'
+
 group :test do
   gem 'shoulda-matchers'
 end
