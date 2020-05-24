@@ -4,7 +4,6 @@ import { Provider as AuthenticationProvider } from "./AuthenticationContext";
 import PrivateRoute from "./PrivateRoute";
 import Positions from "./components/Positions";
 import CreatePosition from "./components/CreatePosition";
-import Position from "./components/Position";
 import JobApplications from "./components/JobApplications";
 import JobApplication from "./components/JobApplication";
 
@@ -15,7 +14,7 @@ const routes = (
       <PrivateRoute
         component={JobApplications}
         exact
-        path="/positions/:position_id/job_applications"
+        path="/positions/:position_id"
       />
       <PrivateRoute
         component={JobApplication}
@@ -23,7 +22,6 @@ const routes = (
         path="/job_applications/:job_application_id"
       />
       <PrivateRoute component={CreatePosition} exact path="/positions/new" />
-      <PrivateRoute component={Position} exact path="/positions/:position_id" />
     </Switch>
   </AuthenticationProvider>
 );

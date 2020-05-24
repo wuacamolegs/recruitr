@@ -4,32 +4,41 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { fetchPosition } from "../reducers/positionReducer";
 import { fetchJobApplications } from "../reducers/jobApplicationReducer";
-import { Card, Badge } from "react-bootstrap";
+import { Card, Badge, Table } from "react-bootstrap";
+import Skills from "./commons/Skills";
 
-const JobApplication = ({ application }) => {
-  const applicant = application.applicant;
+const JobApplicationRow = ({ jobApplication }) => {
+  const applicant = jobApplication.applicant;
   return (
-    <Card style={{ width: "40rem", margin: "1rem" }}>
-      <Card.Body>
-        <Card.Title>
-          {applicant.full_name},{" "}
-          <Badge variant="light">{application.state}</Badge>
-        </Card.Title>
-        <Card.Subtitle className="mb-2 text-muted">
-          {applicant.email}
-        </Card.Subtitle>
-        <Card.Link>
-          <Link to={`/job_applications/${application.id}`}>
-            View Application
-          </Link>
-        </Card.Link>
-      </Card.Body>
-    </Card>
+    <tr>
+      <td>
+        <p>{applicant.fullName}</p>
+      </td>
+      <td>
+        <p>{applicant.email}</p>
+      </td>
+      <td>
+        <Link to={`/job_applications/${jobApplication.id}`}>
+          View Application
+        </Link>
+      </td>
+    </tr>
   );
 };
 
-JobApplication.propTypes = {
+JobApplicationRow.propTypes = {
   application: PropTypes.object
+};
+
+const Position = ({ position }) => {
+  return (
+    <React.Fragment>
+      <h3>Position {position.title}</h3>
+      {position.hiringTeam && <p>Hiring Team: {position.hiringTeam.title}</p>}
+      <p>{position.description}</p>
+      <Skills skills={position.skills} />
+    </React.Fragment>
+  );
 };
 
 export class JobApplications extends React.Component {
@@ -48,13 +57,19 @@ export class JobApplications extends React.Component {
 
     return (
       <React.Fragment>
-        <h3>
-          Appliations for <strong>{currentPosition.title}</strong>
-        </h3>
-
-        {jobApplications.map((application, i) => {
-          return <JobApplication key={i} application={application} />;
-        })}
+        <div style={{ marginBottom: "4rem" }}>
+          <Position position={currentPosition} />
+        </div>
+        <h4>Job Applications</h4>
+        <Table>
+          <tbody>
+            {jobApplications.map((jobApplication, i) => {
+              return (
+                <JobApplicationRow key={i} jobApplication={jobApplication} />
+              );
+            })}
+          </tbody>
+        </Table>
       </React.Fragment>
     );
   }

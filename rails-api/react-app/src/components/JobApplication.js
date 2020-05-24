@@ -35,14 +35,14 @@ export class JobApplication extends React.Component {
           <Link onClick={this.viewPosition.bind(this)}>{position.title}</Link>
         </p>
         <h3>
-          {applicant.full_name}
+          {applicant.fullName}
           <Badge variant="light">{jobApplication.state}</Badge>
         </h3>
         <Skills skills={applicant.skills} />
         {jobApplication.state !== "unmatched" && (
           <React.Fragment>
             <h4>Interview Process</h4>
-            <ScoreCards scores={jobApplication.score_cards} />
+            <ScoreCards scores={jobApplication.scoreCards} />
           </React.Fragment>
         )}
       </React.Fragment>
