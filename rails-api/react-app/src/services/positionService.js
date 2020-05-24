@@ -19,4 +19,4 @@ export function getPosition(positionId) {
     .catch(error => console.log(error));
 }
 
-export default { getPositions };
+export default { getPositions, getPosition };

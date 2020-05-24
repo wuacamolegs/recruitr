@@ -4,14 +4,17 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { fetchPosition } from "../reducers/positionReducer";
 import { fetchJobApplications } from "../reducers/jobApplicationReducer";
-import { Card } from "react-bootstrap";
+import { Card, Badge } from "react-bootstrap";
 
 const JobApplication = ({ application }) => {
   const applicant = application.applicant;
   return (
     <Card style={{ width: "40rem", margin: "1rem" }}>
       <Card.Body>
-        <Card.Title>{applicant.full_name}</Card.Title>
+        <Card.Title>
+          {applicant.full_name},{" "}
+          <Badge variant="light">{application.state}</Badge>
+        </Card.Title>
         <Card.Subtitle className="mb-2 text-muted">
           {applicant.email}
         </Card.Subtitle>

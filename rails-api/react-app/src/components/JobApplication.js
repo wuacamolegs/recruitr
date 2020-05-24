@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { fetchJobApplication } from "../reducers/jobApplicationReducer";
 import ScoreCards from "./commons/ScoreCards";
+import Skills from "./commons/Skills";
 import { Badge } from "react-bootstrap";
 
 export class JobApplication extends React.Component {
@@ -29,14 +30,15 @@ export class JobApplication extends React.Component {
 
     return (
       <React.Fragment>
-        <h3>
-          {applicant.full_name}
-          <Badge variant="light">{jobApplication.state}</Badge>
-        </h3>
         <p>
           Applied for{" "}
           <Link onClick={this.viewPosition.bind(this)}>{position.title}</Link>
         </p>
+        <h3>
+          {applicant.full_name}
+          <Badge variant="light">{jobApplication.state}</Badge>
+        </h3>
+        <Skills skills={applicant.skills} />
         {jobApplication.state !== "unmatched" && (
           <React.Fragment>
             <h4>Interview Process</h4>
