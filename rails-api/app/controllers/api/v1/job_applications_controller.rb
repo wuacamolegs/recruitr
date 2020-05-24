@@ -11,6 +11,12 @@ module Api
         render json: application, status: :created
       end
 
+      def update
+        job_application.update!(recruiter_id: params[:recruiter_id])
+        job_application.matched!
+        render json: job_application
+      end
+
       private
 
       def job_application

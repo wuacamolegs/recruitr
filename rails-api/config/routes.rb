@@ -11,7 +11,7 @@ Rails.application.routes.draw do
           get :recruiters
         end
       end
-      resources :job_applications, only: [:show, :create]
+      resources :job_applications, only: [:show, :create, :update]
     end
   end
 end
