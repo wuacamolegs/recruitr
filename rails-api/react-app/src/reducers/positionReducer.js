@@ -1,4 +1,8 @@
-import { getPositions, getPosition } from "../services/positionService";
+import {
+  getPositions,
+  getPosition,
+  newPosition
+} from "../services/positionService";
 
 const INITIAL_STATE = { positions: [], currentPosition: {} };
 
@@ -14,6 +18,18 @@ export function fetchPosition(positionId) {
   return dispatch => {
     return getPosition(positionId).then(position => {
       return dispatch({ type: "SET_CURRENT_POSITION", position });
+    });
+  };
+}
+
+export function createPosition(params) {
+  return dispatch => {
+    return newPosition(params).then(position => {
+      dispatch({
+        type: "SET_CURRENT_POSITION",
+        currentPosition: position
+      });
+      return position;
     });
   };
 }

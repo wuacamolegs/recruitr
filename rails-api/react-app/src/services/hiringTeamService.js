@@ -1,21 +1,21 @@
 import client from "./apiClient";
 import { extractData, objectKeysToCamelCase } from "../helpers/helpers";
 
-export function getJobApplication(applicationId) {
+export function getHiringTeams() {
   return client
-    .get(`/job_applications/${applicationId}`)
+    .get("/hiring_teams")
     .then(extractData)
     .then(objectKeysToCamelCase)
     .catch(error => console.log(error));
 }
 
-export function getJobApplications(positionId) {
+export function getRecruiters(hiringTeamId) {
   return client
-    .get(`/positions/${positionId}/applications`)
+    .get(`/hiring_teams/${hiringTeamId}/recruiters`)
     .then(extractData)
-    .then(data => data["applications"])
+    .then(data => data["recruiters"])
     .then(objectKeysToCamelCase)
     .catch(error => console.log(error));
 }
 
-export default { getJobApplication, getJobApplications };
+export default { getHiringTeams, getRecruiters };

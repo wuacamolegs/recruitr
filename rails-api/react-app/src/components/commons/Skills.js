@@ -5,7 +5,12 @@ import { Badge } from "react-bootstrap";
 const Skills = ({ skills }) => {
   return (
     <React.Fragment>
-      {skills && skills.map(skill => <Badge variant="light">{skill}</Badge>)}
+      {skills &&
+        skills.map(skill => (
+          <Badge style={{ marginBottom: "1rem" }} variant="light">
+            {skill}
+          </Badge>
+        ))}
     </React.Fragment>
   );
 };

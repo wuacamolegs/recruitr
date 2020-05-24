@@ -35,7 +35,7 @@ module Api
                       .with_state(params[:state])
                       .with_title(params[:title])
                       .with_skills(params[:skills])
-                      .order(params[:order])
+                      .order('created_at desc')
                       .limit(10)
                       .call
       end
