@@ -4,5 +4,6 @@ FactoryBot.define do
     seniority { Faker::Number.between(1, 10) }
 
     initialize_with  { new(attributes) }
+    skip_create
   end
 end
