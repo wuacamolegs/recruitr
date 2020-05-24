@@ -2,7 +2,7 @@ class PositionsQuery
   attr_reader :positions
 
   def initialize
-    @positions = Position.all
+    @positions = Position.all.includes(:job_applications)
   end
 
   def with_title(title)

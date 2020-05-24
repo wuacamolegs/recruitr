@@ -6,6 +6,11 @@ Rails.application.routes.draw do
           get :applications
         end
       end
+      resources :hiring_teams, only: [:index] do
+        member do
+          get :recruiters
+        end
+      end
       resources :job_applications, only: [:show, :create]
     end
   end

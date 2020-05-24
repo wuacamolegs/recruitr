@@ -6,19 +6,21 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+FactoryBot.create(:hiring_team, :with_recruiters, number: 3)
+
 5.times do
- Position.create(title: Faker::Job.title,
+ Position.create!(title: Faker::Job.title,
                   description: Faker::Lorem.paragraph,
-                  skills:  Random.rand(1..5).times.with_object([]){ |i,skills| skills <<  Faker::Job.key_skills },
-                  state: 'open')
+                  skills:  Random.rand(1..5).times.with_object([]){ |i,skills| skills <<  Skill.new(skill:Faker::Job.key_skills) },
+                  state: 'open', hiring_team: HiringTeam.first)
 end
 
 Position.all.each do |position|
    Random.rand(1..5).times do
-     applicant = Applicant.create(first_name: Faker::Name.first_name,
+     applicant = Applicant.create!(first_name: Faker::Name.first_name,
      last_name: Faker::Name.last_name,
-     email: Faker::Internet.email)
-     JobApplication.create(position_id: position.id, applicant_id: applicant.id)
+     email: Faker::Internet.email, skills: position.skills)
+     JobApplication.create!(position_id: position.id, applicant_id: applicant.id)
    end
 end
 
