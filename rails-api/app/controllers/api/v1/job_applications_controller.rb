@@ -12,7 +12,8 @@ module Api
       end
 
       def update
-        job_application.update!(recruiter_id: params[:recruiter_id])
+        recruiter = Recruiter.find(params[:recruiter_id])
+        job_application.update!(recruiter_id: recruiter.id)
         job_application.matched!
         render json: job_application
       end

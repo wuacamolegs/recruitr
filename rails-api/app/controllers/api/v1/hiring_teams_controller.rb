@@ -2,11 +2,11 @@ module Api
   module V1
     class HiringTeamsController < ApiController
       def index
-        render json: HiringTeam.last(10)
+        render json: { hiring_teams: HiringTeam.last(10) }
       end
 
       def recruiters
-        render json: filter_recruiters.to_json
+        render json: { recruiters: filter_recruiters }
       end
 
       private
@@ -17,7 +17,8 @@ module Api
 
       def filter_recruiters
         MatchRecruitersQuery.new(params[:id], params[:job_application_id])
-                            .order_by_best_match(params[:criteria])
+                            .criteria(params[:criteria])
+                            .limit(params[:limit])
                             .call
       end
     end

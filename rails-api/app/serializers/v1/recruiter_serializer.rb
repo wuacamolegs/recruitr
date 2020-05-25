@@ -4,8 +4,4 @@ class RecruiterSerializer < ActiveModel::Serializer
   def full_name
     object.full_name
   end
-
-  def skills
-    object.skills.map { |s| s['skill'] }
-  end
 end

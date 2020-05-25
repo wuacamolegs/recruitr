@@ -31,7 +31,7 @@ const MatchRecruiter = ({
     }
   };
 
-  const sortedRecruiters = sortBy(recruiters, "matchScore").reverse();
+  const sortedRecruiters = sortBy(recruiters, "matchingScore").reverse();
 
   return (
     <React.Fragment>

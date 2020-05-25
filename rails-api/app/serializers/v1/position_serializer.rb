@@ -4,8 +4,4 @@ class PositionSerializer < ActiveModel::Serializer
   def applications
     object.job_applications.count
   end
-
-  def skills
-    object.skills.map { |s| s['skill'] }
-  end
 end
