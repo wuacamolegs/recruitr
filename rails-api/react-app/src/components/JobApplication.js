@@ -8,6 +8,7 @@ import {
 } from "../reducers/jobApplicationReducer";
 import { fetchRecruiters } from "../reducers/hiringTeamReducer";
 import ScoreCards from "./commons/ScoreCards";
+import StateBadge from "./commons/StateBadge";
 import MatchRecruiter from "./MatchRecruiter";
 import Skills from "./commons/Skills";
 import { Badge, Jumbotron } from "react-bootstrap";
@@ -45,8 +46,7 @@ export class JobApplication extends React.Component {
           {jobApplication.createdAt}
         </p>
         <h3>
-          {applicant.fullName}
-          <Badge variant="light">{jobApplication.state}</Badge>
+          {applicant.fullName} <StateBadge state={jobApplication.state} />
         </h3>
         {jobApplication.state == "unmatched" && (
           <MatchRecruiter
@@ -54,7 +54,11 @@ export class JobApplication extends React.Component {
             position={position}
             recruiters={recruiters}
             onChange={criteria =>
-              onChangeCriteria(position.hiringTeamId, criteria)
+              onChangeCriteria(
+                position.hiringTeamId,
+                jobApplication.id,
+                criteria
+              )
             }
             onSubmit={recruiterId =>
               onSubmitRecruiter(jobApplication.id, recruiterId)
@@ -81,8 +85,13 @@ export class JobApplication extends React.Component {
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   dispatch,
-  onChangeCriteria: (hiringTeamId, criteria) => {
-    dispatch(fetchRecruiters(hiringTeamId, { criteria: criteria }));
+  onChangeCriteria: (hiringTeamId, jobApplicationId, criteria) => {
+    dispatch(
+      fetchRecruiters(hiringTeamId, {
+        jobApplicationId: jobApplicationId,
+        criteria: criteria
+      })
+    );
   },
   onSubmitRecruiter: (jobApplicationId, recruiterId) => {
     dispatch(matchRecruiter(jobApplicationId, recruiterId));

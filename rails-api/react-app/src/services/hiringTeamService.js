@@ -13,8 +13,8 @@ export function getHiringTeams() {
     .catch(error => console.log(error));
 }
 
-export function getRecruiters(hiringTeamId, { criteria }) {
-  const params = {};
+export function getRecruiters(hiringTeamId, { jobApplicationId, criteria }) {
+  const params = { job_application_id: jobApplicationId };
   if (!isBlank(criteria)) {
     params.criteria = criteria;
   }

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Skills from "./commons/Skills";
+import sortBy from "lodash/sortBy";
 import { Jumbotron, Button, Form } from "react-bootstrap";
 
 const MatchRecruiter = ({
@@ -30,15 +31,16 @@ const MatchRecruiter = ({
     }
   };
 
+  const sortedRecruiters = sortBy(recruiters, "matchScore").reverse();
+
   return (
     <React.Fragment>
       <Jumbotron>
         <p>
           {applicant.fullName} has been added to the {position.title} position!
-          Match {applicant.fullName} with a recruiter for the skills{" "}
-          <Skills skills={applicant.skills} />.
+          Match {applicant.fullName} with a recruiter for the skills:
         </p>
-
+        <Skills skills={applicant.skills} />
         <div style={{ marginBottom: "2rem" }}>
           <Form.Control
             as="select"
@@ -48,14 +50,13 @@ const MatchRecruiter = ({
           >
             <option>---Select criteria</option>
             <option value="skills">Skills</option>
-            <option value="proficiency">Seniority</option>
+            <option value="seniority">Seniority</option>
             <option value="random">Random</option>
           </Form.Control>
         </div>
-
-        {recruiters && (
+        {sortedRecruiters && (
           <div style={{ marginBottom: "2rem" }}>
-            {recruiters.map(recruiter => (
+            {sortedRecruiters.map(recruiter => (
               <Form.Check
                 type="radio"
                 id={recruiter.id}

@@ -6,8 +6,12 @@ const Skills = ({ skills }) => {
   return (
     <React.Fragment>
       {skills &&
-        skills.map(skill => (
-          <Badge style={{ marginBottom: "1rem" }} variant="light">
+        skills.map((skill, i) => (
+          <Badge
+            key={i}
+            style={{ marginLeft: "1rem", marginBottom: "1rem" }}
+            variant="light"
+          >
             {skill}
           </Badge>
         ))}
