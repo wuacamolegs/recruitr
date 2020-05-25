@@ -11,7 +11,7 @@ class MatchRecruitersQuery
     @criteria = 'random'
   end
 
-  def criteria(criteria)
+  def with_criteria(criteria)
     @criteria = criteria if MATCHING_SCORE_CRITERIAS.include?(criteria)
     self
   end
@@ -33,15 +33,15 @@ class MatchRecruitersQuery
   end
 
   def calculate_matching_score_by_skills(recruiter)
-      calculate_skills_similitary(position_skills, recruiter.skills)
+    calculate_skills_similitary(position_skills, recruiter.skills)
   end
 
   def calculate_matching_score_by_seniority(recruiter)
-     recruiter.skills.sum{ |skill| skill['proficiency'] }
+    recruiter.skills.sum { |skill| skill['proficiency'] }
   end
 
-  def calculate_matching_score_by_random(recruiter)
-      (1..999).to_a.sample(50).first
+  def calculate_matching_score_by_random(_recruiter)
+    (1..999).to_a.sample(50).first
   end
 
   def basic_params(recruiter)

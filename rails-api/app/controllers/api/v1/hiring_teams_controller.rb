@@ -17,7 +17,7 @@ module Api
 
       def filter_recruiters
         MatchRecruitersQuery.new(params[:id], params[:job_application_id])
-                            .criteria(params[:criteria])
+                            .with_criteria(params[:criteria])
                             .limit(params[:limit])
                             .call
       end

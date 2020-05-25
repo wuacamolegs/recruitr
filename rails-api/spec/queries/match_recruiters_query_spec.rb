@@ -15,7 +15,7 @@ describe MatchRecruitersQuery do
 
   context 'when skills criteria is applied' do
     let(:criteria) { 'skills' }
-    before { query.criteria(criteria) }
+    before { query.with_criteria(criteria) }
 
     it 'returns recruiters correctly' do
       expect(query.call.first.keys).to eq(%i[id full_name matching_score])
@@ -57,7 +57,7 @@ describe MatchRecruitersQuery do
 
   context 'when seniority criteria is applied' do
     let(:criteria) { 'seniority' }
-    before { query.criteria(criteria) }
+    before { query.with_criteria(criteria) }
 
     it 'returns recruiters correctly' do
       expect(query.call.first.keys).to eq(%i[id full_name matching_score])
@@ -65,7 +65,7 @@ describe MatchRecruitersQuery do
 
     it 'sets matching score correctly' do
       result = query.call.first
-      expect(result[:matching_score]).to eq(recruiter.skills.sum{|s| s['proficiency'] })
+      expect(result[:matching_score]).to eq(recruiter.skills.sum { |s| s['proficiency'] })
     end
   end
 end
