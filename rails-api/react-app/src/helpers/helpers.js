@@ -54,7 +54,7 @@ export function buildSkills(skills_str) {
   return skills_str.split(",").map(skill => {
     return {
       skill: skill,
-      seniority: 10
+      proficiency: 10
     };
   });
 }

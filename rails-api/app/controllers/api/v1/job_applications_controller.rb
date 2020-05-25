@@ -28,7 +28,7 @@ module Api
       end
 
       def applicant_params
-        [:first_name, :last_name, :email, :linkedin, :angelist, skills: %i[skill seniority]]
+        [:first_name, :last_name, :email, :linkedin, :angelist, skills: %i[skill proficiency]]
       end
     end
   end

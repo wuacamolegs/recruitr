@@ -48,7 +48,7 @@ const MatchRecruiter = ({
           >
             <option>---Select criteria</option>
             <option value="skills">Skills</option>
-            <option value="seniority">Seniority</option>
+            <option value="proficiency">Seniority</option>
             <option value="random">Random</option>
           </Form.Control>
         </div>
