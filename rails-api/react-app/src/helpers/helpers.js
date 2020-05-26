@@ -53,7 +53,7 @@ export function extractData(res) {
 export function buildSkills(skills_str) {
   return skills_str.split(",").map(skill => {
     return {
-      skill: skill,
+      skill: skill.trim(),
       proficiency: 10
     };
   });

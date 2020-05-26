@@ -22,7 +22,7 @@ const MatchRecruiter = ({
 
   const handleOnSelect = e => {
     const target = e.target;
-    return setRecruiterId(target.id);
+    return setRecruiterId(target.value);
   };
 
   const handleSubmitRecruiter = () => {
@@ -62,7 +62,7 @@ const MatchRecruiter = ({
               id={recruiter.id}
               value={recruiter.id}
               label={recruiter.fullName}
-              checked={recruiterId === recruiter.id}
+              checked={recruiterId == recruiter.id}
               onChange={handleOnSelect}
             />
           ))}
