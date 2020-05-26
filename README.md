@@ -38,7 +38,6 @@ Here is a working live demo : https://recruitr-drawbotics-cgs.herokuapp.com
 8. Start rails server using `rails s`
 
 ```
-$ cd rails-api
 $ bundle install
 $ bin/rake db:setup
 $ rake db:migrate db:seed
