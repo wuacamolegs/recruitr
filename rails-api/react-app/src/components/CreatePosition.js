@@ -115,7 +115,6 @@ export class CreatePosition extends React.Component {
             Submit
           </Button>
         </Form>
-        {Object.values(this.state).toString()}
       </React.Fragment>
     );
   }

@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { fetchPositions } from "../reducers/positionReducer";
-import { Table } from "react-bootstrap";
+import { Table, Button, Row } from "react-bootstrap";
 import Skills from "./commons/Skills";
 
 const PositionRow = ({ position }) => {
@@ -38,15 +38,25 @@ export class Positions extends React.Component {
 
     return (
       <React.Fragment>
-        <h3>All Positions</h3>
-        <Table hover>
-          <tbody>
-            {positions &&
-              positions.map((position, i) => {
-                return <PositionRow key={i} position={position} />;
-              })}
-          </tbody>
-        </Table>
+        <Row>
+          <h3>All Positions</h3>
+          <Button variant="link">
+            <Link to={`/positions/new`}>New Position</Link>
+          </Button>
+        </Row>
+        <Row>
+          <Table hover>
+            <tbody>
+              <th>Position</th>
+              <th>Required skills</th>
+              <th>Applications</th>
+              {positions &&
+                positions.map((position, i) => {
+                  return <PositionRow key={i} position={position} />;
+                })}
+            </tbody>
+          </Table>
+        </Row>
       </React.Fragment>
     );
   }

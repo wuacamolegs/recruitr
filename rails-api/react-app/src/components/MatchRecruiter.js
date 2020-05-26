@@ -39,8 +39,8 @@ const MatchRecruiter = ({
         {applicant.fullName} has been added to the {position.title} position!
         Match {applicant.fullName} with a recruiter for the skills:
       </p>
-      <Skills skills={applicant.skills} />
-      <div style={{ marginBottom: "2rem" }}>
+      <Skills skills={position.skills} />
+      <div style={{ marginBottom: "2rem", marginTop: "2rem" }}>
         <Form.Control
           as="select"
           value={criteria}
@@ -52,6 +52,7 @@ const MatchRecruiter = ({
           <option value="seniority">Seniority</option>
           <option value="random">Random</option>
         </Form.Control>
+        <p>Recruiters are ordered by similarity according to criteria</p>
       </div>
       {sortedRecruiters && (
         <div style={{ marginBottom: "2rem" }}>

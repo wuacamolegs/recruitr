@@ -8,11 +8,7 @@ const Skills = ({ skills }) => {
       {skills &&
         Object.values(skills).map(({ skill, proficiency }, i) => (
           <span>
-            <Badge
-              key={i}
-              style={{ marginRight: "1rem", marginBottom: "1rem" }}
-              variant="secondary"
-            >
+            <Badge key={i} style={{ marginRight: "1rem" }} variant="secondary">
               {skill}{" "}
               <Badge key={i} variant="light">
                 {proficiency}

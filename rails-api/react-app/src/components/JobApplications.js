@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { fetchPosition } from "../reducers/positionReducer";
 import { fetchJobApplications } from "../reducers/jobApplicationReducer";
-import { Card, Badge, Table } from "react-bootstrap";
+import { Card, Badge, Table, Button, Row, Jumbotron } from "react-bootstrap";
 import Skills from "./commons/Skills";
 import StateBadge from "./commons/StateBadge";
 
@@ -37,10 +37,14 @@ JobApplicationRow.propTypes = {
 const Position = ({ position }) => {
   return (
     <React.Fragment>
-      <h3>Position {position.title}</h3>
-      {position.hiringTeam && <p>Hiring Team: {position.hiringTeam.title}</p>}
-      <p>{position.description}</p>
-      <Skills skills={position.skills} />
+      <h3>Position</h3>
+      <Jumbotron>
+        <h3> {position.title}</h3>
+        {position.hiringTeam && <p>Hiring Team: {position.hiringTeam.title}</p>}
+        <p>{position.description}</p>
+        <h4>Required skills</h4>
+        <Skills skills={position.skills} />
+      </Jumbotron>
     </React.Fragment>
   );
 };
@@ -64,7 +68,14 @@ export class JobApplications extends React.Component {
         <div style={{ marginBottom: "4rem" }}>
           <Position position={currentPosition} />
         </div>
-        <h4>Job Applications</h4>
+        <Row>
+          <h4>Job Applications</h4>
+          <Button variant="link">
+            <Link to={`/positions/${currentPosition.id}/job_applications/new`}>
+              New Applicant
+            </Link>
+          </Button>
+        </Row>
         <Table>
           <tbody>
             {jobApplications.map((jobApplication, i) => {

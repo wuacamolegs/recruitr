@@ -14,10 +14,12 @@ import MatchRecruiter from "./MatchRecruiter";
 import Skills from "./commons/Skills";
 import { Badge, Jumbotron } from "react-bootstrap";
 
-const ApplicantInformation = ({ applicant }) => {
+const ApplicantInformation = ({ applicant, jobApplication }) => {
   return (
     <Jumbotron>
-      <h4>Applicant Information</h4>
+      <h3>
+        {applicant.fullName} <StateBadge state={jobApplication.state} />
+      </h3>
       <p>{applicant.email}</p>
       {applicant.linkedin && <p>Linkedin {applicant.linkedin}</p>}
       {applicant.angelist && <p>AngeList {applicant.angelist}</p>}
@@ -34,9 +36,6 @@ const ApplicantHeader = ({ applicant, position, jobApplication }) => {
         <Link to={`/positions/${position.id}/details`}>{position.title}</Link>{" "}
         {jobApplication.createdAt}
       </p>
-      <h3>
-        {applicant.fullName} <StateBadge state={jobApplication.state} />
-      </h3>
     </React.Fragment>
   );
 };
@@ -63,12 +62,16 @@ export class JobApplication extends React.Component {
 
     return (
       <React.Fragment>
+        <h3>Job Application</h3>
         <ApplicantHeader
           applicant={applicant}
           position={position}
           jobApplication={jobApplication}
         />
-        <ApplicantInformation applicant={applicant} />
+        <ApplicantInformation
+          jobApplication={jobApplication}
+          applicant={applicant}
+        />
         {jobApplication.state == "unmatched" && (
           <Jumbotron>
             <h4>Match a recruiter</h4>

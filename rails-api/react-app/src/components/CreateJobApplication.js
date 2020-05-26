@@ -55,7 +55,7 @@ export class CreateJobApplication extends React.Component {
 
     return (
       <React.Fragment>
-        <h3>New JobApplication for {position.title}</h3>
+        <h3>New Application for {position.title} position</h3>
         {this.state.submitError && (
           <Alert
             variant="danger"
@@ -136,7 +136,6 @@ export class CreateJobApplication extends React.Component {
             Submit
           </Button>
         </Form>
-        {Object.values(this.state).toString()}
       </React.Fragment>
     );
   }

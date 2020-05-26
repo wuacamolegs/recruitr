@@ -9,6 +9,7 @@ export function getHiringTeams() {
   return client
     .get("/hiring_teams")
     .then(extractData)
+    .then(data => data["hiring_teams"])
     .then(objectKeysToCamelCase)
     .catch(error => console.log(error));
 }
@@ -26,4 +27,13 @@ export function getRecruiters(hiringTeamId, { jobApplicationId, criteria }) {
     .catch(error => console.log(error));
 }
 
-export default { getHiringTeams, getRecruiters };
+export function getAllRecruiters() {
+  return client
+    .get(`/recruiters`)
+    .then(extractData)
+    .then(data => data["recruiters"])
+    .then(objectKeysToCamelCase)
+    .catch(error => console.log(error));
+}
+
+export default { getHiringTeams, getRecruiters, getAllRecruiters };
