@@ -16,6 +16,7 @@ Rails.application.routes.draw do
           put :recruiter
         end
       end
+      resources :recruiters, only: [:index]
     end
   end
 end
