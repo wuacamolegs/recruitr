@@ -105,4 +105,65 @@ describe Api::V1::JobApplicationsController do
       end
     end
   end
+
+  describe 'GET #recruiter' do
+    let(:position)        { create(:position, :with_hiring_team) }
+    let(:applicant)       { create(:applicant) }
+    let(:job_application) do
+      create(:job_application,
+             position: position,
+             applicant: applicant)
+    end
+    let(:params) do
+      {
+        recruiter_id: recruiter_id,
+        id: job_application.id
+      }
+    end
+
+    context 'when recruiter doesnt exists' do
+      let(:recruiter_id) { 'fake' }
+
+      before do
+        put :recruiter, params: params
+      end
+
+      it 'returns a not found status code' do
+        expect(response).to have_http_status(:not_found)
+      end
+    end
+
+    context 'when the recruiter exists' do
+      let(:recruiter)       { create(:recruiter) }
+      let(:recruiter_id)    { recruiter.id }
+
+      before do
+        put :recruiter, params: params
+      end
+
+      it 'returns created status' do
+        expect(response).to have_http_status(:ok)
+      end
+
+      it 'changes job application state' do
+        expect(response_body['state']).to eq('matched')
+      end
+
+      it 'returns applicant attrs correctly' do
+        expect(response_body['applicant']['full_name']).to eq(applicant.full_name)
+        expect(response_body['applicant']['email']).to     eq(applicant.email)
+        expect(response_body['applicant']['skills']).to    eq(applicant.skills)
+      end
+
+      it 'returns position attrs correctly' do
+        expect(response_body['position']['id']).to    eq(position.id)
+        expect(response_body['position']['title']).to eq(position.title)
+      end
+
+      it 'returns recruiter attrs correctly' do
+        expect(response_body['recruiter']['id']).to eq(recruiter.id)
+        expect(response_body['recruiter']['full_name']).to eq(recruiter.full_name)
+      end
+    end
+  end
 end

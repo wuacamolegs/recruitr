@@ -21,7 +21,7 @@ describe Api::V1::PositionsController do
 
       before do
         create_list(:position, count, :with_hiring_team)
-        get :index, params: {}
+        get :index
       end
 
       it 'returns success status' do

@@ -1,5 +1,9 @@
 import client from "./apiClient";
-import { extractData, objectKeysToCamelCase } from "../helpers/helpers";
+import {
+  extractData,
+  objectKeysToCamelCase,
+  isBlank
+} from "../helpers/helpers";
 
 export function getHiringTeams() {
   return client
@@ -9,9 +13,13 @@ export function getHiringTeams() {
     .catch(error => console.log(error));
 }
 
-export function getRecruiters(hiringTeamId) {
+export function getRecruiters(hiringTeamId, { jobApplicationId, criteria }) {
+  const params = { job_application_id: jobApplicationId };
+  if (!isBlank(criteria)) {
+    params.criteria = criteria;
+  }
   return client
-    .get(`/hiring_teams/${hiringTeamId}/recruiters`)
+    .get(`/hiring_teams/${hiringTeamId}/recruiters`, { params })
     .then(extractData)
     .then(data => data["recruiters"])
     .then(objectKeysToCamelCase)

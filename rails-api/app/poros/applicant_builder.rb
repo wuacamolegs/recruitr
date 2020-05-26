@@ -27,7 +27,7 @@ class ApplicantBuilder
     raise 'undefined skills' if params[SKILLS].blank?
 
     applicant.skills = params[SKILLS].map do |skill|
-      Skill.new(skill: skill['skill'], seniority: skill['seniority']&.to_i)
+      Skill.new(skill: skill['skill'], proficiency: skill['proficiency']&.to_i)
     end
   end
 end

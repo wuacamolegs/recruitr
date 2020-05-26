@@ -15,7 +15,7 @@ const routes = (
       <PrivateRoute
         component={JobApplications}
         exact
-        path="/positions/:position_id"
+        path="/positions/:position_id/details"
       />
       <PrivateRoute
         component={JobApplication}

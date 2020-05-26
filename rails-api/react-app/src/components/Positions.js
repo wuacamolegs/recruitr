@@ -10,13 +10,13 @@ const PositionRow = ({ position }) => {
   return (
     <tr>
       <td>
-        <Link to={`/positions/${position.id}`}>{position.title}</Link>
+        <Link to={`/positions/${position.id}/details`}>{position.title}</Link>
       </td>
       <td>
         <Skills skills={position.skills} />
       </td>
       <td>
-        <Link to={`/positions/${position.id}/job_applications`}>
+        <Link to={`/positions/${position.id}/details`}>
           {position.applications} applications
         </Link>
       </td>

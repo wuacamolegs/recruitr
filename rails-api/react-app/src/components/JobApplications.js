@@ -6,6 +6,7 @@ import { fetchPosition } from "../reducers/positionReducer";
 import { fetchJobApplications } from "../reducers/jobApplicationReducer";
 import { Card, Badge, Table } from "react-bootstrap";
 import Skills from "./commons/Skills";
+import StateBadge from "./commons/StateBadge";
 
 const JobApplicationRow = ({ jobApplication }) => {
   const applicant = jobApplication.applicant;
@@ -16,6 +17,9 @@ const JobApplicationRow = ({ jobApplication }) => {
       </td>
       <td>
         <p>{applicant.email}</p>
+      </td>
+      <td>
+        <StateBadge state={jobApplication.state} />
       </td>
       <td>
         <Link to={`/job_applications/${jobApplication.id}`}>
@@ -89,6 +93,7 @@ const mapStateToProps = state => {
 };
 
 JobApplications.propTypes = {
+  jobApplications: PropTypes.arrayOf(PropTypes.object),
   currentPosition: PropTypes.object
 };
 
