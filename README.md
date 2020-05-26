@@ -30,7 +30,7 @@ Here is a working live demo : https://recruitr-drawbotics-cgs.herokuapp.com
 
 **Run Rails API**
 
-3. Navigate to api using `cd rails-api`
+3. Navigate to project
 4. Install dependencies using `bundle install`
 5. Initialize database using `bin/rake db:setup`
 6. Run migrations and seed `rake db:migrate db:seed`
