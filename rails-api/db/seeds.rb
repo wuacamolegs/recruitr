@@ -1,48 +1,32 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
-FactoryBot.create(:hiring_team, :with_recruiters, number: 3)
-
-5.times do
- Position.create!(title: Faker::Job.title,
-                  description: Faker::Lorem.paragraph,
-                  skills:  Random.rand(1..5).times.with_object([]){ |i,skills| skills <<  Skill.new(skill:Faker::Job.key_skills) },
-                  state: 'open', hiring_team: HiringTeam.first)
-end
-
-Position.all.each do |position|
-   Random.rand(1..5).times do
-     applicant = Applicant.create!(first_name: Faker::Name.first_name,
-     last_name: Faker::Name.last_name,
-     email: Faker::Internet.email, skills: position.skills)
-     JobApplication.create!(position_id: position.id, applicant_id: applicant.id)
-   end
-end
-
-
-#
-#
-#
-#
-# 10.times.with_object([]) do |i, positions|
-#   positions[i] = {
-#     title: Faker::Job.title,
-#     description: Faker::Lorem.paragraph,
-#     skills:  Random.rand(1..5).times.with_object([]){ |i,skills| skills <<  Faker::Job.key_skills },
-#     state: 'open'
-#   }
-# end
-#
-# positions_params = [{:title=>"Chief Manager", :description=>"Quia vel est. Amet fuga qui. Voluptatibus eum sed.", :skills=>["Organisation", "Proactive", "Technical savvy"], :state=>"open"}, {:title=>"National Manufacturing Producer", :description=>"A dolorem autem. Nam et error. Eius tempore dolorem.", :skills=>["Networking skills", "Networking skills", "Communication"], :state=>"open"}, {:title=>"Customer Marketing Producer", :description=>"Sequi pariatur atque. Et qui sit. Cumque ipsa officia.", :skills=>["Self-motivated"], :state=>"open"}, {:title=>"Central Marketing Officer", :description=>"Exercitationem dicta velit. Laborum aut tempore. Asperiores dolores consectetur.", :skills=>["Networking skills", "Teamwork", "Technical savvy", "Fast learner", "Leadership"], :state=>"open"}, {:title=>"Internal IT Supervisor", :description=>"Laudantium delectus magnam. Sed quisquam est. A rem quaerat.", :skills=>["Technical savvy", "Work under pressure", "Communication", "Technical savvy"], :state=>"open"}, {:title=>"Accounting Engineer", :description=>"Est saepe provident. Ducimus quam ad. Voluptates incidunt ullam.", :skills=>["Teamwork", "Self-motivated", "Confidence", "Networking skills", "Leadership"], :state=>"open"}, {:title=>"Regional Construction Representative", :description=>"Nobis itaque ipsam. Voluptatibus soluta et. Ad totam labore.", :skills=>["Fast learner", "Teamwork", "Proactive", "Communication", "Networking skills"], :state=>"open"}, {:title=>"Corporate Technology Executive", :description=>"Labore eveniet sint. Magni non ut. Omnis quaerat ipsam.", :skills=>["Networking skills"], :state=>"open"}, {:title=>"Senior Community-Services Associate", :description=>"Reiciendis veritatis possimus. Quis facilis blanditiis. Quos veritatis sint.", :skills=>["Networking skills", "Confidence", "Communication", "Technical savvy", "Communication"], :state=>"open"}, {:title=>"Principal Orchestrator", :description=>"Consequatur impedit qui. Suscipit ut qui. Occaecati inventore quia.", :skills=>["Teamwork", "Proactive"], :state=>"open"}]
-#
-# positions_params.each do |position_params|
-#   Position.create!(title: position_params[:title],
-#                    description: position_params[:description],
-#                    skills:   position_params[:skills],
-#                    state: 'open')
-# end
+Position.create!([
+  {title: "Backend Developer", description: "Help our company enter our scaling phase. Build with the future in mind. Have an impact on the team's technical decisions. Work on, and really own, a part of the company's infrastructure. Be proactive.", skills: [{"skill"=>"Ruby", "proficiency"=>10}, {"skill"=>"Capistrano", "proficiency"=>10}, {"skill"=>"PHP", "proficiency"=>10}], state: "draft", hiring_team_id: 2},
+  {title: "FrontEnd Developer", description: "Help our company enter our scaling phase. Build with the future in mind. Have an impact on the team's technical decisions. Work on, and really own, a part of the company's infrastructure. Be proactive.", skills: [{"skill"=>"Backbone", "proficiency"=>10}, {"skill"=>"HAML", "proficiency"=>10}, {"skill"=>"Angular 2+", "proficiency"=>10}], state: "draft", hiring_team_id: 1}
+])
+Recruiter.create!([
+  {first_name: "Johnston", last_name: "Satterfield", email: "garryprosacco@bednar.name", skills: [{"skill"=>"LESS", "proficiency"=>7}, {"skill"=>"SCSS", "proficiency"=>9}], hiring_team_id: 1},
+  {first_name: "Reichel", last_name: "Schmitt", email: "rhea@jaskolski.com", skills: [{"skill"=>"ES6/ES2015", "proficiency"=>5}, {"skill"=>"Backbone", "proficiency"=>9}, {"skill"=>"HAML", "proficiency"=>9}, {"skill"=>"RxJS", "proficiency"=>8}, {"skill"=>"Redux", "proficiency"=>10}], hiring_team_id: 1},
+  {first_name: "Marquardt", last_name: "Beatty", email: "madelyn@ferrysatterfield.com", skills: [{"skill"=>"CoffeeScript", "proficiency"=>6}, {"skill"=>"SCSS", "proficiency"=>9}, {"skill"=>"HAML", "proficiency"=>7}, {"skill"=>"LESS", "proficiency"=>10}], hiring_team_id: 1},
+  {first_name: "Treutel", last_name: "Beer", email: "hunglangworth@swift.co", skills: [{"skill"=>"CoffeeScript", "proficiency"=>7}], hiring_team_id: 1},
+  {first_name: "Rutherford", last_name: "Kunze", email: "shelbyritchie@walsh.org", skills: [{"skill"=>"Firebase", "proficiency"=>7}], hiring_team_id: 1},
+  {first_name: "Dibbert", last_name: "Pfeffer", email: "kenmraz@damore.info", skills: [{"skill"=>"GraphQL", "proficiency"=>6}, {"skill"=>"ES6/ES2015", "proficiency"=>9}, {"skill"=>"Backbone", "proficiency"=>7}, {"skill"=>"Angular 2+", "proficiency"=>10}, {"skill"=>"Angular 2+", "proficiency"=>10}], hiring_team_id: 1},
+  {first_name: "VonRueden", last_name: "Schumm", email: "concettaheathcote@rolfsonschinner.com", skills: [{"skill"=>"Bootstrap", "proficiency"=>8}, {"skill"=>"ES6/ES2015", "proficiency"=>7}, {"skill"=>"JSX", "proficiency"=>8}, {"skill"=>"AngularJS", "proficiency"=>8}, {"skill"=>"jQuery UI", "proficiency"=>6}], hiring_team_id: 1},
+  {first_name: "Hand", last_name: "Greenfelder", email: "laurinda@lueilwitzorn.net", skills: [{"skill"=>"Ruby", "proficiency"=>5}, {"skill"=>"Capistrano", "proficiency"=>9}], hiring_team_id: 2},
+  {first_name: "Collins", last_name: "Durgan", email: "osvaldo@wehnerchamplin.net", skills: [{"skill"=>"Perl", "proficiency"=>8}, {"skill"=>"Java", "proficiency"=>7}, {"skill"=>"PHP", "proficiency"=>5}], hiring_team_id: 2},
+  {first_name: "Schaefer", last_name: "Monahan", email: "jayegoodwin@macgyver.net", skills: [{"skill"=>"Sinatra", "proficiency"=>8}, {"skill"=>"R language", "proficiency"=>10}], hiring_team_id: 2},
+  {first_name: "D'Amore", last_name: "Gusikowski", email: "kendra@ebert.net", skills: [{"skill"=>"SOAP", "proficiency"=>10}, {"skill"=>"PHP", "proficiency"=>7}], hiring_team_id: 2},
+  {first_name: "Wilderman", last_name: "Schroeder", email: "wynonamuller@wisozk.co", skills: [{"skill"=>"ActiveMQ", "proficiency"=>5}, {"skill"=>".NET Core", "proficiency"=>7}], hiring_team_id: 2}
+])
+JobApplication.create!([
+  {position_id: 2, applicant_id: 3, state: "unmatched", score_cards: nil, recruiter_id: nil},
+  {position_id: 2, applicant_id: 4, state: "matched", score_cards: [{"dynamism"=>"10", "experience"=>"8", "interview_notes"=>" Is available to start as soon as possible", "interest_in_company"=>"10"}], recruiter_id: 8},
+  {position_id: 1, applicant_id: 2, state: "unmatched", score_cards: nil, recruiter_id: nil}
+])
+HiringTeam.create!([
+  {title: "Backend Team"},
+  {title: "Front Team"}
+])
+Applicant.create!([
+  {first_name: "Priscila", last_name: "Schimmel", email: "priscila.schimmel@gmail.com", linkedin: "Priscila Schimmel", angelist: "Priscila Schimmel", skills: [{"skill"=>"Backbone", "proficiency"=>10}, {"skill"=>" HAML", "proficiency"=>10}, {"skill"=>" Angular", "proficiency"=>10}]},
+  {first_name: "Brendon", last_name: "Dickens", email: "brendon.dickens@hotmail.com", linkedin: "B. Dickens", angelist: "B. Dickens", skills: [{"skill"=>"Ruby", "proficiency"=>10}, {"skill"=>"Capistrano", "proficiency"=>10}]},
+  {first_name: "Margarett", last_name: "Ferry", email: "m.ferry@gmail.com", linkedin: "Margarett F", angelist: "Margarett F", skills: [{"skill"=>"Ruby", "proficiency"=>10}, {"skill"=>"Capistrano", "proficiency"=>10}, {"skill"=>"PHP", "proficiency"=>10}]}
+])
