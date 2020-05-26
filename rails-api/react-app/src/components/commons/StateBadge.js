@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Badge } from "react-bootstrap";
 
 const stateColor = state => {
-  if (state == "matched") {
+  if (state === "matched") {
     return "success";
   } else {
     return "danger";

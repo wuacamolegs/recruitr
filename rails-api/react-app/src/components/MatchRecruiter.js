@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Skills from "./commons/Skills";
 import sortBy from "lodash/sortBy";
-import { Jumbotron, Button, Form } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 
 const MatchRecruiter = ({
   position,
@@ -62,7 +62,7 @@ const MatchRecruiter = ({
               id={recruiter.id}
               value={recruiter.id}
               label={recruiter.fullName}
-              checked={recruiterId == recruiter.id}
+              checked={recruiterId === recruiter.id}
               onChange={handleOnSelect}
             />
           ))}

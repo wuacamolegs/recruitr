@@ -1,9 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { fetchAllRecruiters } from "../reducers/hiringTeamReducer";
-import { Table, Button, Row } from "react-bootstrap";
+import { Table } from "react-bootstrap";
 import Skills from "./commons/Skills";
 
 const RecruiterRow = ({ recruiter }) => {

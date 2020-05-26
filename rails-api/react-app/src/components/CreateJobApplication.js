@@ -1,10 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { createJobApplication } from "../reducers/jobApplicationReducer";
 import { fetchPosition } from "../reducers/positionReducer";
-import { Form, Button, Row, Col, Alert } from "react-bootstrap";
+import { Form, Button, Col, Alert } from "react-bootstrap";
 
 export class CreateJobApplication extends React.Component {
   constructor(props) {
@@ -37,7 +36,7 @@ export class CreateJobApplication extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     this.setState({ submitError: false });
-    const { dispatch, match, history } = this.props;
+    const { dispatch, history } = this.props;
     let savePromise;
     savePromise = dispatch(
       createJobApplication(this.state, this.props.position.id)

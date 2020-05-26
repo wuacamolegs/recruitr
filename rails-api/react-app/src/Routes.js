@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch } from "react-router-dom";
 import { Provider as AuthenticationProvider } from "./AuthenticationContext";
 import PrivateRoute from "./PrivateRoute";
 import RecruitrHome from "./components/RecruitrHome";

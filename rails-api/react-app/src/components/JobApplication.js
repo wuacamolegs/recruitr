@@ -12,7 +12,7 @@ import ScoreCards from "./commons/ScoreCards";
 import StateBadge from "./commons/StateBadge";
 import MatchRecruiter from "./MatchRecruiter";
 import Skills from "./commons/Skills";
-import { Badge, Jumbotron } from "react-bootstrap";
+import { Jumbotron } from "react-bootstrap";
 
 const ApplicantInformation = ({ applicant, jobApplication }) => {
   return (
@@ -72,7 +72,7 @@ export class JobApplication extends React.Component {
           jobApplication={jobApplication}
           applicant={applicant}
         />
-        {jobApplication.state == "unmatched" && (
+        {jobApplication.state === "unmatched" && (
           <Jumbotron>
             <h4>Match a recruiter</h4>
             <MatchRecruiter
@@ -92,7 +92,7 @@ export class JobApplication extends React.Component {
             />
           </Jumbotron>
         )}
-        {jobApplication.state == "matched" && (
+        {jobApplication.state === "matched" && (
           <Jumbotron>
             <h4>Interview Process</h4>
             <p>Recruiter: {jobApplication.recruiter.fullName}</p>

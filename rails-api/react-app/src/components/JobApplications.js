@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { fetchPosition } from "../reducers/positionReducer";
 import { fetchJobApplications } from "../reducers/jobApplicationReducer";
-import { Card, Badge, Table, Button, Row, Jumbotron } from "react-bootstrap";
+import { Table, Button, Row, Jumbotron } from "react-bootstrap";
 import Skills from "./commons/Skills";
 import StateBadge from "./commons/StateBadge";
 
