@@ -1,5 +1,5 @@
 class Position < ApplicationRecord
-  has_many :job_applications
+  has_many :job_applications, dependent: :destroy
   belongs_to :hiring_team
 
   validates :title, :description, :state, presence: true

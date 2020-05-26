@@ -1,5 +1,5 @@
 class JobApplication < ApplicationRecord
-  belongs_to :applicant, class_name: 'Applicant', foreign_key: 'applicant_id'
+  belongs_to :applicant, class_name: 'Applicant', foreign_key: 'applicant_id', dependent: :destroy
   belongs_to :position, class_name: 'Position', foreign_key: 'position_id'
   belongs_to :recruiter, class_name: 'Recruiter', foreign_key: 'recruiter_id', optional: true
 
