@@ -33,14 +33,16 @@ Here is a working live demo : https://recruitr-drawbotics-cgs.herokuapp.com
 3. Navigate to project
 4. Install dependencies using `bundle install`
 5. Initialize database using `bin/rake db:setup`
-6. Run migrations and seed `rake db:migrate db:seed`
-7. Run tests using `bundle exec rspec`
-8. Start rails server using `rails s`
+6. Run migrations `bundle exec rake db:migrate`
+7. Seed database `bundle exec rake db:seed`
+8. Run tests using `bundle exec rspec`
+9. Start rails server using `rails s`
 
 ```
 $ bundle install
 $ bin/rake db:setup
-$ rake db:migrate db:seed
+$ rake db:migrate
+$ rake db:seed
 $ bundle exec rspec
 $ rails s
 ```
@@ -56,7 +58,7 @@ $ rails s
 ```
 $ cd react-app
 $ npm install
-$ npm run start
+$ PORT=5000 npm run start
 ```
 
 **Using foreman**
