@@ -6,21 +6,26 @@ const Skills = ({ skills }) => {
   return (
     <React.Fragment>
       {skills &&
-        skills.map((skill, i) => (
-          <Badge
-            key={i}
-            style={{ marginLeft: "1rem", marginBottom: "1rem" }}
-            variant="light"
-          >
-            {skill}
-          </Badge>
+        Object.values(skills).map(({ skill, proficiency }, i) => (
+          <span>
+            <Badge
+              key={i}
+              style={{ marginRight: "1rem", marginBottom: "1rem" }}
+              variant="secondary"
+            >
+              {skill}{" "}
+              <Badge key={i} variant="light">
+                {proficiency}
+              </Badge>
+            </Badge>
+          </span>
         ))}
     </React.Fragment>
   );
 };
 
 Skills.propTypes = {
-  skills: PropTypes.arrayOf(PropTypes.string)
+  skills: PropTypes.arrayOf(PropTypes.object)
 };
 
 export default Skills;

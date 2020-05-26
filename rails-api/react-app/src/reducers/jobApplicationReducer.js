@@ -2,7 +2,8 @@ import {
   getJobApplication,
   getJobApplications,
   newJobApplication,
-  setRecruiter
+  setRecruiter,
+  update
 } from "../services/jobApplicationService";
 
 const INITIAL_STATE = { jobApplications: [], currentJobApplication: null };
@@ -38,6 +39,14 @@ export function createJobApplication(params, positionId) {
 export function matchRecruiter(jobApplicationId, recruiterId) {
   return dispatch => {
     return setRecruiter(jobApplicationId, recruiterId).then(jobApplication => {
+      return dispatch({ type: "SET_JOB_APPLICATION", jobApplication });
+    });
+  };
+}
+
+export function updateJobApplication(jobApplicationId, changes) {
+  return dispatch => {
+    return update(jobApplicationId, changes).then(jobApplication => {
       return dispatch({ type: "SET_JOB_APPLICATION", jobApplication });
     });
   };

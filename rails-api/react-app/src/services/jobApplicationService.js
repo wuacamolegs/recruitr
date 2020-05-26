@@ -41,8 +41,20 @@ export function newJobApplication(params, positionId) {
 
 export function setRecruiter(jobApplicationId, recruiterId) {
   return client
-    .put(`/job_applications/${jobApplicationId}`, {
+    .put(`/job_applications/${jobApplicationId}/recruiter`, {
       recruiter_id: recruiterId
+    })
+    .then(extractData)
+    .then(objectKeysToCamelCase)
+    .catch(error => console.log(error));
+}
+
+export function update(jobApplicationId, changes) {
+  return client
+    .put(`/job_applications/${jobApplicationId}`, {
+      job_application: {
+        ...objectKeysToUnderscore(changes)
+      }
     })
     .then(extractData)
     .then(objectKeysToCamelCase)

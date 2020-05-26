@@ -35,45 +35,43 @@ const MatchRecruiter = ({
 
   return (
     <React.Fragment>
-      <Jumbotron>
-        <p>
-          {applicant.fullName} has been added to the {position.title} position!
-          Match {applicant.fullName} with a recruiter for the skills:
-        </p>
-        <Skills skills={applicant.skills} />
+      <p>
+        {applicant.fullName} has been added to the {position.title} position!
+        Match {applicant.fullName} with a recruiter for the skills:
+      </p>
+      <Skills skills={applicant.skills} />
+      <div style={{ marginBottom: "2rem" }}>
+        <Form.Control
+          as="select"
+          value={criteria}
+          onChange={handleOnChange}
+          required
+        >
+          <option>---Select criteria</option>
+          <option value="skills">Skills</option>
+          <option value="seniority">Seniority</option>
+          <option value="random">Random</option>
+        </Form.Control>
+      </div>
+      {sortedRecruiters && (
         <div style={{ marginBottom: "2rem" }}>
-          <Form.Control
-            as="select"
-            value={criteria}
-            onChange={handleOnChange}
-            required
-          >
-            <option>---Select criteria</option>
-            <option value="skills">Skills</option>
-            <option value="seniority">Seniority</option>
-            <option value="random">Random</option>
-          </Form.Control>
+          {sortedRecruiters.map(recruiter => (
+            <Form.Check
+              type="radio"
+              id={recruiter.id}
+              value={recruiter.id}
+              label={recruiter.fullName}
+              checked={recruiterId == recruiter.id}
+              onChange={handleOnSelect}
+            />
+          ))}
         </div>
-        {sortedRecruiters && (
-          <div style={{ marginBottom: "2rem" }}>
-            {sortedRecruiters.map(recruiter => (
-              <Form.Check
-                type="radio"
-                id={recruiter.id}
-                value={recruiter.id}
-                label={recruiter.fullName}
-                checked={recruiterId == recruiter.id}
-                onChange={handleOnSelect}
-              />
-            ))}
-          </div>
-        )}
-        <p>
-          <Button variant="primary" onClick={handleSubmitRecruiter}>
-            Submit
-          </Button>
-        </p>
-      </Jumbotron>
+      )}
+      <p>
+        <Button variant="primary" onClick={handleSubmitRecruiter}>
+          Submit
+        </Button>
+      </p>
     </React.Fragment>
   );
 };

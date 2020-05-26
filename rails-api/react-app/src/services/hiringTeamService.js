@@ -21,6 +21,7 @@ export function getRecruiters(hiringTeamId, { jobApplicationId, criteria }) {
   return client
     .get(`/hiring_teams/${hiringTeamId}/recruiters`, { params })
     .then(extractData)
+    .then(data => data["recruiters"])
     .then(objectKeysToCamelCase)
     .catch(error => console.log(error));
 }
