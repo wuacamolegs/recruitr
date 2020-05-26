@@ -106,7 +106,7 @@ describe Api::V1::JobApplicationsController do
     end
   end
 
-  describe 'GET #update' do
+  describe 'GET #recruiter' do
     let(:position)        { create(:position, :with_hiring_team) }
     let(:applicant)       { create(:applicant) }
     let(:job_application) do
@@ -125,7 +125,7 @@ describe Api::V1::JobApplicationsController do
       let(:recruiter_id) { 'fake' }
 
       before do
-        put :update, params: params
+        put :recruiter, params: params
       end
 
       it 'returns a not found status code' do
@@ -138,7 +138,7 @@ describe Api::V1::JobApplicationsController do
       let(:recruiter_id)    { recruiter.id }
 
       before do
-        put :update, params: params
+        put :recruiter, params: params
       end
 
       it 'returns created status' do

@@ -12,6 +12,12 @@ module Api
       end
 
       def update
+        job_application.update!(job_application_params)
+        render json: job_application
+      end
+
+      # PUT recruiter, set recruiter
+      def recruiter
         recruiter = Recruiter.find(params[:recruiter_id])
         job_application.update!(recruiter_id: recruiter.id)
         job_application.matched!
@@ -25,7 +31,7 @@ module Api
       end
 
       def job_application_params
-        params.require(:job_application).permit(:position_id, applicant: applicant_params)
+        params.require(:job_application).permit(:position_id, score_cards: %i[dynamism experience interest_in_company interview_notes], applicant: applicant_params)
       end
 
       def applicant_params

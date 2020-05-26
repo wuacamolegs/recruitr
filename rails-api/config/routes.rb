@@ -11,7 +11,11 @@ Rails.application.routes.draw do
           get :recruiters
         end
       end
-      resources :job_applications, only: [:show, :create, :update]
+      resources :job_applications, only: [:show, :create, :update] do
+        member do
+          put :recruiter
+        end
+      end
     end
   end
 end
