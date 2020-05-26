@@ -93,6 +93,7 @@ const mapStateToProps = state => {
 };
 
 JobApplications.propTypes = {
+  jobApplications: PropTypes.arrayOf(PropTypes.object),
   currentPosition: PropTypes.object
 };
 

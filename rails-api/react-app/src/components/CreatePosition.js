@@ -37,7 +37,7 @@ export class CreatePosition extends React.Component {
     const { dispatch, match, history } = this.props;
     let savePromise;
     savePromise = dispatch(createPosition(this.state)).then(position => {
-      history.push(`/positions/${position.id}`);
+      history.push(`/positions/${position.id}/details`);
     });
 
     savePromise.catch(() => {

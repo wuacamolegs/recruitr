@@ -31,7 +31,7 @@ const ApplicantHeader = ({ applicant, position, jobApplication }) => {
     <React.Fragment>
       <p>
         Applied for{" "}
-        <Link to={`/positions/${position.id}`}>{position.title}</Link>{" "}
+        <Link to={`/positions/${position.id}/details`}>{position.title}</Link>{" "}
         {jobApplication.createdAt}
       </p>
       <h3>
@@ -138,7 +138,7 @@ const mapStateToProps = state => {
 };
 
 JobApplication.propTypes = {
-  jobApplication: PropTypes.arrayOf(PropTypes.object)
+  jobApplication: PropTypes.object
 };
 
 export default connect(
