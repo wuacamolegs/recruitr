@@ -105,8 +105,6 @@ Criterias:
 - Position states: `draft`, `open`, `closed`
 - Job application states: `unmatched`, `matched`, `interviewing`, `closed`
 
-## Using examples
-
 ## Built with
 
 - [Ruby on Rails]()
