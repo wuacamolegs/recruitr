@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Skills from "./commons/Skills";
 import sortBy from "lodash/sortBy";
-import { Jumbotron, Button, Form } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 
 const MatchRecruiter = ({
   position,
@@ -39,8 +39,8 @@ const MatchRecruiter = ({
         {applicant.fullName} has been added to the {position.title} position!
         Match {applicant.fullName} with a recruiter for the skills:
       </p>
-      <Skills skills={applicant.skills} />
-      <div style={{ marginBottom: "2rem" }}>
+      <Skills skills={position.skills} />
+      <div style={{ marginBottom: "2rem", marginTop: "2rem" }}>
         <Form.Control
           as="select"
           value={criteria}
@@ -52,6 +52,7 @@ const MatchRecruiter = ({
           <option value="seniority">Seniority</option>
           <option value="random">Random</option>
         </Form.Control>
+        <p>Recruiters are ordered by similarity according to criteria</p>
       </div>
       {sortedRecruiters && (
         <div style={{ marginBottom: "2rem" }}>
@@ -61,7 +62,7 @@ const MatchRecruiter = ({
               id={recruiter.id}
               value={recruiter.id}
               label={recruiter.fullName}
-              checked={recruiterId == recruiter.id}
+              checked={recruiterId === recruiter.id}
               onChange={handleOnSelect}
             />
           ))}

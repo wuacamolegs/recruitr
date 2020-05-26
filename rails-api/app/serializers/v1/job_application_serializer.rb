@@ -4,7 +4,7 @@ class JobApplicationSerializer < ActiveModel::Serializer
   has_one :applicant, serializer: ApplicantSerializer
 
   def position
-    { id: object.position.id, title: object.position.title, hiring_team_id: object.position.hiring_team_id }
+    { id: object.position.id, title: object.position.title, hiring_team_id: object.position.hiring_team_id, skills: object.position.skills }
   end
 
   def recruiter

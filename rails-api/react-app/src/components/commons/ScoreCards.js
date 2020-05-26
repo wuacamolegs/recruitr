@@ -45,7 +45,7 @@ const ScoreCards = ({ scores, onSubmit }) => {
                     </InputGroup.Text>
                   </InputGroup.Prepend>
                   <FormControl
-                    as={key == "notesInterview" ? "textarea" : "input"}
+                    as={key === "notesInterview" ? "textarea" : "input"}
                     aria-label="Small"
                     aria-describedby="inputGroup-sizing-sm"
                     value={value}

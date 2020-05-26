@@ -1,4 +1,8 @@
-import { getHiringTeams, getRecruiters } from "../services/hiringTeamService";
+import {
+  getHiringTeams,
+  getRecruiters,
+  getAllRecruiters
+} from "../services/hiringTeamService";
 
 const INITIAL_STATE = { hiringTeams: [], recruiters: [] };
 
@@ -13,6 +17,14 @@ export function fetchHiringTeams(params) {
 export function fetchRecruiters(hiringTeamId, params) {
   return dispatch => {
     return getRecruiters(hiringTeamId, params).then(recruiters => {
+      return dispatch({ type: "SET_RECRUITERS", recruiters });
+    });
+  };
+}
+
+export function fetchAllRecruiters() {
+  return dispatch => {
+    return getAllRecruiters().then(recruiters => {
       return dispatch({ type: "SET_RECRUITERS", recruiters });
     });
   };

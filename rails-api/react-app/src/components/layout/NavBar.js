@@ -9,19 +9,24 @@ function NavBar({ className, t, match, history }) {
       <Nav activeKey="/">
         <Nav.Item>
           <Nav.Link>
-            <NavLink to="/">Recruit</NavLink>
-          </Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Nav.Link>
-            <NavLink to="/">Positions</NavLink>
-          </Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Nav.Link>
-            <NavLink eventKey="disabled" disabled to="/hiring_team">
-              Hiring Team
+            <NavLink to="/">
+              <strong>Recruit</strong>
             </NavLink>
+          </Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link>
+            <NavLink to="/positions">Positions</NavLink>
+          </Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link>
+            <NavLink to="/positions/new">New Position</NavLink>
+          </Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link>
+            <NavLink to="/recruiters">Recruiters</NavLink>
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>

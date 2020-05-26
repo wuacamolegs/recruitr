@@ -1,10 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { fetchHiringTeams } from "../reducers/hiringTeamReducer";
 import { createPosition } from "../reducers/positionReducer";
-import { Form, Button, Row, Col, Alert } from "react-bootstrap";
+import { Form, Button, Alert } from "react-bootstrap";
 
 export class CreatePosition extends React.Component {
   constructor(props) {
@@ -20,7 +19,7 @@ export class CreatePosition extends React.Component {
   }
 
   componentDidMount() {
-    const { dispatch, match } = this.props;
+    const { dispatch } = this.props;
     dispatch(fetchHiringTeams());
   }
 
@@ -34,7 +33,7 @@ export class CreatePosition extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     this.setState({ submitError: false });
-    const { dispatch, match, history } = this.props;
+    const { dispatch, history } = this.props;
     let savePromise;
     savePromise = dispatch(createPosition(this.state)).then(position => {
       history.push(`/positions/${position.id}/details`);
@@ -115,7 +114,6 @@ export class CreatePosition extends React.Component {
             Submit
           </Button>
         </Form>
-        {Object.values(this.state).toString()}
       </React.Fragment>
     );
   }
