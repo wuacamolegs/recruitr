@@ -1,12 +1,12 @@
 require_relative './skills_similitary'
 class MatchRecruitersQuery
   include SkillsSimilitary
-  MATCHING_SCORE_CRITERIAS = %w[skills seniority].freeze
+  MATCHING_SCORE_CRITERIAS = %w[skills seniority random].freeze
   attr_reader :recruiters, :job_application, :criteria, :position_skills
 
   def initialize(hiring_team_id, job_application_id)
     @recruiters = Recruiter.where(hiring_team_id: hiring_team_id)
-    @job_application = JobApplication.find(job_application_id) if job_application_id.present?
+    @job_application = JobApplication.find(job_application_id)
     @position_skills = job_application.position.skills
     @criteria = 'random'
   end
